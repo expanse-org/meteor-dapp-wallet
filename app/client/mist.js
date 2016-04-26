@@ -32,7 +32,7 @@ updateMistMenu = function(){
             mist.menu.add(account._id,{
                 position: 3 + index,
                 name: account.name,
-                badge: EthTools.formatBalance(account.balance, "0 a", 'ether')+ ' ETH',
+                badge: EthTools.formatBalance(account.balance, "0 a", 'ether')+ ' EXP',
                 selected: (location.pathname === '/account/'+ account.address)
             }, function(){
                 FlowRouter.go('/account/'+ account.address);

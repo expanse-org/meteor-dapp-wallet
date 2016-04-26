@@ -17,7 +17,7 @@ var setupContractFilters = function(newDocument){
 
     var blockToCheckBack = (newDocument.checkpointBlock || 0) - ethereumConfig.rollBackBy;
 
-    // TODO change to 0, when new geth is out!!!!!
+    // TODO change to 0, when new gexp is out!!!!!
     if(blockToCheckBack < 400000)
         blockToCheckBack = 400000;
 

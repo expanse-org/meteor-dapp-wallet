@@ -23,7 +23,7 @@
             "texts": {
                 "note": "Notiz",
                 "balance": "Kontostand",
-                "connectionErrorMist": "Verbindung konnte nicht hergestellt werden. Bitte starten Sie Geth mit folgendem Kommando:<br><br><small><code>__node__</code><br><br>Stellen Sie sicher, dass Sie Ihren IPC Pfad zum einen Standardpfad festgelegt haben, wenn Sie einen anderen <code>datadir</code> verwenden, z.B. <br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Ethereum/geth.ipc</code><br>oder<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.ethereum/geth.ipc</code>. <br><br>Alternative Option: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorMist": "Verbindung konnte nicht hergestellt werden. Bitte starten Sie Geth mit folgendem Kommando:<br><br><small><code>__node__</code><br><br>Stellen Sie sicher, dass Sie Ihren IPC Pfad zum einen Standardpfad festgelegt haben, wenn Sie einen anderen <code>datadir</code> verwenden, z.B. <br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Ethereum/gexp.ipc</code><br>oder<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.ethereum/gexp.ipc</code>. <br><br>Alternative Option: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "connectionErrorBrowser": "Verbindung konnte nicht hergestellt werden. Bitte starten Sie Geth mit den folgenden Optionen:<br><br><small><code>__node__</code><br><br>Alternative Optionen: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "pendingConfirmationsBadge": "Ausstehende Bestätigung!",
                 "nodeSyncing": "__blockDiff__ ausstehende Blöcke",
