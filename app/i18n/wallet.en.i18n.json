@@ -88,16 +88,29 @@
                 "showInterface": "Show Interface"
             },
             "modal": {
-                "deleteText": "Do you really want to delete this wallet contract? The account will still exist on the blockchain but <br>if you delete the address, you will not be able to find and will lose access to the funds deposited<br><br> Type the name of the wallet contract to confirm the deletion.",
+                "deleteText": "Do you really want to delete this wallet contract? The account will still exist on the blockchain but <br>if you delete the address, you will not be able to find and will lose access to the funds deposited<br><br> Type \"delete\" confirm the deletion.",
                 "backupWallet": {
                     "title": "Backup your wallet contract address!",
                     "description": "Make sure to write down the wallet contract address:"
                 }
             }
         },
+        "events": {
+            "eventInfoTitle": "Event",
+            "latest": "Latest events",
+            "filter": "Filter events",
+            "transactionHash": "Transaction hash",
+            "block": "Block",
+            "originContract": "Origin contract",
+            "logIndex": "Log index",
+            "transactionIndex": "Transaction index",
+            "returnValues": "Return values",
+            "eventName": "Event name"
+        },
         "transactions": {
             "transactionInfoTitle": "Transaction",
             "latest": "Latest transactions",
+            "block": "Block",
             "pendingConfirmations": "Confirmation needed",
             "none": "No transactions yet",
             "time": "Time",
@@ -147,8 +160,8 @@
                     "text": "You received __amount__ on __to__ from __from__."
                 },
                 "outgoingTransaction": {
-                    "title": "Payment send",
-                    "text": "You send __amount__ from __from__ to __to__."    
+                    "title": "Payment sent",
+                    "text": "You sent __amount__ from __from__ to __to__."    
                 },
                 "pendingConfirmation": {
                     "title": "Confirmation needed",
@@ -219,6 +232,7 @@
             "estimatedFee": "Estimated fee",
             "createContract": "Create contract",
             "provideGas": "Provide gas",
+            "transactionSent": "Transaction sent",
             "error": {
                 "emptyWallet": "The account you want to send from is empty.",
                 "notEnoughFunds": "You don't have enough funds in the account.",
@@ -226,7 +240,7 @@
                 "noAmount": "You didn't specify an amount to send."
             },
             "texts": {
-                "ownerPaysGas": "Gas is payed by the owner of the wallet contract",
+                "ownerPaysGas": "Gas is paid by the owner of the wallet contract",
                 "sendAmount": "You want to send <strong>__amount__</strong>.",
                 "sendAmountEquivalent": "You want to send <strong>__amount__</strong> in ether, using exchange rates from <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Which is currently an equivalent of <strong>__etherAmount__</strong>.",
                 "sendToken": "You want to send <strong>__amount__ __symbol__</strong> of <strong> __name__</strong>.",

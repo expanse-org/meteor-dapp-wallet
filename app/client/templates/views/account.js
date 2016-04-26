@@ -20,7 +20,7 @@ Template['views_account'].helpers({
     @method (jsonInterface)
     */
     'jsonInterface': function() {
-        return (this.owners) ? walletInterface : this.jsonInterface;
+        return (this.owners) ? _.clone(walletInterface) : _.clone(this.jsonInterface);
     },
     /**
     Get the pending confirmations of this account.
@@ -103,10 +103,10 @@ Template['views_account'].events({
             text: new Spacebars.SafeString(TAPi18n.__('wallet.accounts.modal.deleteText') + 
                 '<br><input type="text" class="deletionConfirmation" autofocus="true">'),
             ok: function(){
-                console.log('data: ', data);
-                if(data.name === $('input.deletionConfirmation').val()) {
+                if($('input.deletionConfirmation').val() === 'delete') {
                     Wallets.remove(data._id);
                     CustomContracts.remove(data._id);
+
                     FlowRouter.go('dashboard');
                     return true;
                 }
@@ -230,17 +230,12 @@ Template['views_account'].events({
             return _.omit(e, 'contractInstance');
         })
 
-        console.log("jsonInterface: ", jsonInterface);
-        console.log("jsonInterface clean: ", cleanJsonInterface);
-
         // Open a modal showing the QR Code
         EthElements.Modal.show({
             template: 'views_modals_interface',
             data: {
                 jsonInterface: cleanJsonInterface
             }
-        });
-
-        
+        });   
     }
 });

@@ -10,8 +10,8 @@
             {{else}}
                 <tr class="full-width">
                     <td colspan="5">
-                        {{> spinner}}
-                        {{! i18n "wallet.transactions.noneFound"}}
+                        {{! > spinner}}
+                        {{i18n "wallet.transactions.noneFound"}}
                     </td>
                 </tr>
             {{/each}}
@@ -72,9 +72,6 @@
                 {{fromNowTime}}
             {{/with}}
         </td>
-        <!-- <td class="account-name">
-            {{> elements_account_link account=account address=to}}
-        </td> -->
         {{#if outOfGas}}
             <td class="transaction-amount minus">
                 -{{dapp_formatBalance fee '0,0.00[000] UNIT'}}

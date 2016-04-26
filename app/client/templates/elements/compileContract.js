@@ -125,7 +125,6 @@ Template['elements_compileContract'].onRendered(function() {
 
                         return {
                             name: name,
-                            displayName: name.replace(/([A-Z])/g, ' $1'),
                             bytecode: contract.bytecode,
                             jsonInterface: jsonInterface,
                             constructorInputs: constructor.inputs
@@ -134,7 +133,7 @@ Template['elements_compileContract'].onRendered(function() {
 
                     TemplateVar.set(template, 'selectedContract', null);
                     TemplateVar.set(template, 'compiledContracts', compiledContracts);
-                    TemplateVar.set('constructorInputs', []);
+                    TemplateVar.set(template, 'constructorInputs', []);
 
                 } else {
                     console.log(error);

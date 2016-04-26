@@ -28,7 +28,16 @@ Check if in mist
 @method (isMist)
 **/
 Template.registerHelper('isMist', function(){
-    return typeof mist !== 'undefined';
+    return (typeof mist !== 'undefined');
+});
+
+/**
+Check if in mist and in mist mode
+
+@method (isMistMode)
+**/
+Template.registerHelper('isMistMode', function(){
+    return (typeof mist !== 'undefined' && mist.mode === 'mist');
 });
 
 /**
@@ -161,4 +170,15 @@ Formats address to a CaseChecksum
 @return {String} checksumAddress    The returned, checksummed address
 **/
 Template.registerHelper('toChecksumAddress', web3.toChecksumAddress);
+
+
+
+/** 
+Takes a camelcase and shows it with spaces
+
+@method toSentence
+@param {string} camelCase    A name in CamelCase or snake_case format
+@return {string} sentence    The same name with spaces
+**/
+Template.registerHelper('toSentence', Helpers.toSentence);
 

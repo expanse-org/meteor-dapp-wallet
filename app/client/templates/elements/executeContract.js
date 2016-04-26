@@ -43,18 +43,15 @@ Template['elements_executeContract'].helpers({
         var contractConstants = [];
 
         _.each(this.jsonInterface, function(func, i){
+            func = _.clone(func);
 
             // Walk throught the jsonInterface and extract functions and constants
             if(func.type == 'function') {
                 func.contractInstance = contractInstance;
-
-                func.displayName = func.name.replace(/([A-Z])/g, ' $1');
                 func.inputs = _.map(func.inputs, Helpers.createTemplateDataFromInput);
 
                 if(func.constant){
-                    // if it's a constant   
-                    func.displayName = func.displayName.replace(/([\_])/g, '<span class="punctuation">$1</span>');
-                     
+                    // if it's a constant                        
                     contractConstants.push(func);                    
                 } else {
                     //if its a variable
@@ -148,19 +145,12 @@ Template['elements_executeContract_constant'].onCreated(function(){
                 // single return value
                 if(template.data.outputs.length === 1) {
                     template.data.outputs[0].value = r;
-                    template.data.outputs[0].displayName = template.data.outputs[0].name.replace(/([A-Z])/g, ' $1');
-
                     outputs.push(template.data.outputs[0]);
 
                 // multiple return values
                 } else {
                     outputs = _.map(template.data.outputs, function(output, i) {
                         output.value = r[i];
-                        output.displayName = output.name
-                        .replace(/([A-Z])/g, ' $1')        
-                        .replace(/([\-\_])/g, '<span class="punctuation">$1</span>');
-;
-
                         return output;
                     });
                 }
@@ -190,7 +180,6 @@ Template['elements_executeContract_constant'].helpers({
     */
     'extra': function() {
         var data = formatOutput(this); // 1000000000
-        // console.log('data', data);
 
         if (data > 1400000000 && data < 1800000000 && Math.floor(data/1000) != data/1000) {
             return '(' + moment(data*1000).fromNow() + ')';
@@ -213,7 +202,6 @@ Template['elements_executeContract_constant'].events({
     */
     'change .abi-input, input .abi-input': function(e, template) {
         var inputs = Helpers.addInputValue(template.data.inputs, this, e.currentTarget);
-
         TemplateVar.set('inputs', inputs);
     }
 });
@@ -271,7 +259,6 @@ Template['elements_executeContract_function'].events({
     */
     'change .abi-input, input .abi-input': function(e, template) {
         var inputs = Helpers.addInputValue(template.data.inputs, this, e.currentTarget);
-        console.log('inputs: ', inputs)
     
         TemplateVar.set('executeData', template.data.contractInstance[template.data.name].getData.apply(null, inputs));
     },
@@ -360,7 +347,7 @@ Template['elements_executeContract_function'].events({
 
                             // FlowRouter.go('dashboard');
                             GlobalNotification.success({
-                               content: "The transaction was executed",
+                               content: 'i18n:wallet.send.transactionSent',
                                duration: 2
                             });
                         } else {
