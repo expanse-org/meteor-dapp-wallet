@@ -242,7 +242,7 @@
             "texts": {
                 "ownerPaysGas": "Le Gas est payé par le propriétaire du Wallet Contract",
                 "sendAmount": "Vous voulez envoyer <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "Vous voulez envoyer <strong>__amount__</strong> en exp, en utilisant les taux d'échanges depuis <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Ce qui présentement est équivalent à <strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "Vous voulez envoyer <strong>__amount__</strong> en exp, en utilisant les taux d'échanges depuis <a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Ce qui présentement est équivalent à <strong>__etherAmount__</strong>.",
                 "sendToken": "Vous voulez envoyer <strong>__amount__ __symbol__</strong> de <strong> __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">Ce montant est supérieur à la limite journalière restante __limit__ (de __total__ par jour), donc il vous faut __count__ autres comptes pour confirmer.</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">Ce montant est supérieur à la limite journalière restante de __limit__ (de __total__ par jour), donc il vous faut __count__ autres comptes pour confirmer.</p>",

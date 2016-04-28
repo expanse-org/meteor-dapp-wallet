@@ -242,7 +242,7 @@
             "texts": {
                 "ownerPaysGas": "ガスはウォレットコントラクトのオーナーによって支払われます",
                 "sendAmount": "送りたい <strong>__量__</strong>.",
-                "sendAmountEquivalent": "送りたい<strong>__量__</strong>exp、交換レートは<a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>現在の価値に換算すると<strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "送りたい<strong>__量__</strong>exp、交換レートは<a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>現在の価値に換算すると<strong>__etherAmount__</strong>.",
                 "sendToken": "送りたい<strong>__量__ __symbol__</strong> の <strong> __名前__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">この量は１日の上限を超えています__limit__ (of __total__ per day),  __count__ 了承するための他のアカウント。</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">この量は１日の上限を超えています __limit__ (of __total__ per day), so you need __count__ other accounts to confirm.</p>",

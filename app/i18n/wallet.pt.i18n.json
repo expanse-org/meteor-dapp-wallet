@@ -242,7 +242,7 @@
             "texts": {
                 "ownerPaysGas": "O combustível é pago pelo dono da carteira",
                 "sendAmount": "Você quer enviar <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "Você quer enviar <strong>__amount__</strong> em exp, usando a taxa de câmbio de <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br> Que atualmente é equivalente a  <strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "Você quer enviar <strong>__amount__</strong> em exp, usando a taxa de câmbio de <a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br> Que atualmente é equivalente a  <strong>__etherAmount__</strong>.",
                 "sendToken": "Você quer enviar <strong>__amount__ __symbol__</strong> de <strong> __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">A quantidade é acima do limite diário de __limit__ (of __total__ per day), então você vai precisar da aprovação de __count__ outra conta.</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">A quantidade é acima do limite diário de __limit__ (of __total__ per day), então você vai precisar da aprovação de __count__ outras contas.</p>",

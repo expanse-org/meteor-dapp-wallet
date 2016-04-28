@@ -242,7 +242,7 @@
             "texts": {
                 "ownerPaysGas": "Газ оплачивается владельцем контракта кошелька",
                 "sendAmount": "Вы желаете отправить <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "Вы желаете отправить <strong>__amount__</strong> эфира, используя курс с <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Что в данный момент эквивалентно <strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "Вы желаете отправить <strong>__amount__</strong> эфира, используя курс с <a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Что в данный момент эквивалентно <strong>__etherAmount__</strong>.",
                 "sendToken": "Вы хотите отправить <strong>__amount__ __symbol__</strong> от <strong> __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">Этот платеж превышает дневной лимит на __limit__ ( __total__ в день), вам требуется подтверждение __count__ других аккаутнов.</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">Этот платеж превышает дневной лимит на __limit__ ( __total__ в день), вам требуется подтверждение __count__ других аккаунтов.</p>",

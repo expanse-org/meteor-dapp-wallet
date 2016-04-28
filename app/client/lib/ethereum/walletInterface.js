@@ -18,13 +18,13 @@ contractVersions = [
         original: '971ac1efe62de02ab7497cf2cad2b93ce990a8d11c3a544943baf807e42eab7d',
         stub: false,
         // version 0 with tx.origin
-        address: '0x4efc6389b88569a375668b7b3bd4a9b6c8f4a942'
+        address: '0x0' // never active on exp
     },
     // 1 better daily limit
     { 
         original: '8207780d6fb31803373aff97360562231187ebb0da6b4678eeb68ceb16897509',
         stub: '',
-        address: '0x273930d21e01ee25e4c219b63259d214872220a2'
+        address: '0x5923cE93CD740004c3C0a548f619dd10aa290E56'
     }
 ];
 
