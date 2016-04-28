@@ -577,7 +577,7 @@ Template['views_send'].events({
                 
                 // ETHER TX
                 if(tokenAddress === 'ether') {
-                    console.log('Send Ether');
+                    console.log('Send Expanse');
 
                     // CONTRACT TX
                     if(contracts['ct_'+ selectedAccount._id]) {

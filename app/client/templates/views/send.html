@@ -72,8 +72,8 @@
                         <li>
                             <input type="radio" id="ether" value="ether" name="choose-token" {{tokenSelectedAttr 'ether'}}> 
                             <label for="ether"> 
-                                <span class="ether-symbol">Ξ</span>
-                                <span class="token-name">ETHER</span>
+                                <span class="ether-symbol">E</span>
+                                <span class="token-name">EXP</span>
                                 <span class="balance">
                                     {{#if $neq unit 'ether'}}
                                         {{dapp_formatBalance selectedAccount.balance "0,0.00 UNIT"}} ({{dapp_formatBalance selectedAccount.balance "0,0.00[0000000000000000] UNIT" "ether"}})
@@ -98,8 +98,8 @@
                     </ul>
                 {{else}}
                     <div class="token-ether"> 
-                        <span class="ether-symbol">Ξ</span>
-                        <span class="token-name">ETHER</span>
+                        <span class="ether-symbol">E</span>
+                        <span class="token-name">EXP</span>
                         <span class="balance">
                             {{#if $neq unit 'ether'}}
                                 {{dapp_formatBalance selectedAccount.balance "0,0.00 UNIT"}} ({{dapp_formatBalance selectedAccount.balance "0,0.00[0000000000000000] UNIT" "ether"}})

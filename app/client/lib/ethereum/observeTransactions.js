@@ -401,7 +401,7 @@ observeTransactions = function(){
                !newDocument.exchangeRates.btc ||
                !newDocument.exchangeRates.usd ||
                !newDocument.exchangeRates.eur) {
-                HTTP.get('https://min-api.cryptocompare.com/data/pricehistorical?fsym=ETH&tsyms=BTC,USD,EUR&ts='+ newDocument.timestamp, function(e, res){
+                HTTP.get('https://min-api.cryptocompare.com/data/pricehistorical?fsym=EXP&tsyms=BTC,USD,EUR&ts='+ newDocument.timestamp, function(e, res){
 
                     if(!e && res && res.statusCode === 200) {
                         var content = JSON.parse(res.content);

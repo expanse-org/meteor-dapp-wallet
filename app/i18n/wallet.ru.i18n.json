@@ -23,7 +23,7 @@
             "texts": {
                 "note": "Примечание",
                 "balance": "Баланс",
-                "connectionErrorMist": "Подключение не получилось. Пожалуйста запустите gexp используя:<br><br><small><code>__node__</code><br><br>Убедитесь, что установлен правильный путь IPC по умолчанию, если вы используете особый <code>datadir</code>, например<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Ethereum/gexp.ipc</code><br>or<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.ethereum/gexp.ipc</code>. <br><br>Можно добавить: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorMist": "Подключение не получилось. Пожалуйста запустите gexp используя:<br><br><small><code>__node__</code><br><br>Убедитесь, что установлен правильный путь IPC по умолчанию, если вы используете особый <code>datadir</code>, например<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Expanse/gexp.ipc</code><br>or<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.expanse/gexp.ipc</code>. <br><br>Можно добавить: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "connectionErrorBrowser": "Подключение не получилось. Попробуйте запустить gexp с такими параметрами:<br><br><small><code>__node__</code><br><br>Можно добавить: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "pendingConfirmationsBadge": "Ожидаем подтверждения!",
                 "nodeSyncing": "осталось __blockDiff__ блоков",
@@ -37,7 +37,7 @@
                 }
             },
             "error": {
-                "wrongChain": "Кажется вы не в той цепочке, перезапустите Ethereum Wallet App!"
+                "wrongChain": "Кажется вы не в той цепочке, перезапустите Expanse Wallet App!"
             }
         },
         "modals": {
@@ -267,7 +267,7 @@
             "title": "Собственные <strong>Жетоны</strong>",
             "subTitle": "Добавить жетоны",
             "admin": "__name__ (страница администратора)",
-            "description": "Жетоны — это валюты и другие ценные бумаги построенные на платформе Эфириум. Для того чтобы видеть жетоны определенного типа, вы должны добавить их адрес в список. Вы можете создать свой личный тип жетонов слегка модифицировав <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">этот пример простого контракта</a> или детально изучив <a href=\"https://www.ethereum.org/token#the-code\" target=\"_blank\">Жетоны Эфириума</a>.",
+            "description": "Жетоны — это валюты и другие ценные бумаги построенные на платформе Эфириум. Для того чтобы видеть жетоны определенного типа, вы должны добавить их адрес в список. Вы можете создать свой личный тип жетонов слегка модифицировав <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">этот пример простого контракта</a> или детально изучив <a href=\"https://www.expanse.tech/token#the-code\" target=\"_blank\">Жетоны Эфириума</a>.",
             "deleteToken": "Вы действительно хотите удалить жетон <strong>__token__</strong> из вашего списка?",
             "addedToken": "Добавить __token__ в ваш список жетонов",
             "editedToken": "Редактировать жетон __token__",
@@ -295,7 +295,7 @@
             "writeToContract": "Писать в контракт",
             "pickContract": "Выбрать контракт",
             "pickFunction": "Выбрать функцию",
-            "noContract": "<p>Вставьте код контракта сюда. Вы можете найти много примеров контрактов на <a href=\"http://ethereum.org\" target=\"_blank\">ethereum.org</a>: </p> <ul><li><a href=\"http://ethereum.org/token\" target=\"_blank\">Создать жетон</a></li><li><a href=\"http://ethereum.org/crowdsale\" target=\"_blank\">Начать краудсэйл</a></li><li><a href=\"http://ethereum.org/dao\" target=\"_blank\">Создать блокчейн организацию</a></li></ul>",
+            "noContract": "<p>Вставьте код контракта сюда. Вы можете найти много примеров контрактов на <a href=\"http://expanse.tech\" target=\"_blank\">expanse.tech</a>: </p> <ul><li><a href=\"http://expanse.tech/token\" target=\"_blank\">Создать жетон</a></li><li><a href=\"http://expanse.tech/crowdsale\" target=\"_blank\">Начать краудсэйл</a></li><li><a href=\"http://expanse.tech/dao\" target=\"_blank\">Создать блокчейн организацию</a></li></ul>",
             "buttons": {
                 "showContractInfo": "Показать информацию о контракте",
                 "hideContractInfo": "Спрятать информацию контракта",

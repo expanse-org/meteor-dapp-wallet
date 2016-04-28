@@ -23,21 +23,21 @@
             "texts": {
                 "note": "Note",
                 "balance": "Balance",
-                "connectionErrorMist": "Impossible de se connecter. Veuillez lancer gexp en utilisant:<br><br><small><code>__node__</code><br><br>Assurez-vous d'avoir bien fixé le chemin IPC par défaut lorsque vous utilisez une différente <code>datadir</code>, ex: <br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Ethereum/gexp.ipc</code><br>ou<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.ethereum/gexp.ipc</code>. <br><br>Ajout optionnel: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorMist": "Impossible de se connecter. Veuillez lancer gexp en utilisant:<br><br><small><code>__node__</code><br><br>Assurez-vous d'avoir bien fixé le chemin IPC par défaut lorsque vous utilisez une différente <code>datadir</code>, ex: <br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Expanse/gexp.ipc</code><br>ou<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.expanse/gexp.ipc</code>. <br><br>Ajout optionnel: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "connectionErrorBrowser": "Impossible de se connecter. Merci de bien vouloir lancer gexp en utilisant les options suivantes: <br><br><small><code>__node__</code><br><br>Ajout optionnel: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "pendingConfirmationsBadge": "Confirmation en cours!",
                 "nodeSyncing": "__blockDiff__ blocks restants",
                 "blockReceived": "Nouveau Block Reçu",
                 "timeSinceBlock": "depuis le dernier block",
                 "peers": "pairs",
-                "testnetExplain": "Vous êtes sur un testnet, N'ENVOYEZ AUCUN vrai ether à ces adresses",
+                "testnetExplain": "Vous êtes sur un testnet, N'ENVOYEZ AUCUN vrai exp à ces adresses",
                 "noAccounts": {
                     "title": "Vous n'avez aucun compte pour l'instant",
                     "text": "Vous devez créer au moins un compte avec un mot de passe robuste."
                 }
             },
             "error": {
-                "wrongChain": "Vous avez l'air d'être sur une chaine différente, veuillez redémarrer Ethereum Wallet App!"
+                "wrongChain": "Vous avez l'air d'être sur une chaine différente, veuillez redémarrer Expanse Wallet App!"
             }
         },
         "modals": {
@@ -45,7 +45,7 @@
                 "title": "Selectionner un compte"
             },
             "testnetWallet": {
-                "walletNeedsDeployment": "Vous semblez être sur un testnet.<br><br>Aucun code de 'wallet contract' n'a été trouvé, nous devons en déployer un qui pourra être utilisé par un 'wallet contract stub contracts' depuis votre adresse: <br><br><small><code>__account__</code></small><br><br><em>Veuillez vous assurer que cette adresse possède au moins 1 ether!</em>",
+                "walletNeedsDeployment": "Vous semblez être sur un testnet.<br><br>Aucun code de 'wallet contract' n'a été trouvé, nous devons en déployer un qui pourra être utilisé par un 'wallet contract stub contracts' depuis votre adresse: <br><br><small><code>__account__</code></small><br><br><em>Veuillez vous assurer que cette adresse possède au moins 1 exp!</em>",
                 "testnetWalletDeployed": "Le Wallet Contract initial est déployé!<br>Un Wallet Contract initial a été déployé à cette adresse:<br><br><small><code>__address__</code></small>."
             },
             "addToken": {
@@ -69,19 +69,19 @@
             "defaultName": "SansNom",
             "creating": "Création",
             "importing": "Importation",
-            "accountNote": "Comptes ne permet pas l'affichage des transactions entrantes, mais détient et envoie de l'Ether. Pour voir les transactions entrantes <a href=\"/account/new\">créer un portefeuille de contrats</a> pour stocker de l'Ether.",
-            "walletNote": "La plupart des plateformes d'échange ne supportent pour l'instant pas la réception d'ether depuis un Wallet Contract. Assurez-vous de déplacer votre argent sur une adresse de compte personnel d'abord!",
+            "accountNote": "Comptes ne permet pas l'affichage des transactions entrantes, mais détient et envoie de l'Exp. Pour voir les transactions entrantes <a href=\"/account/new\">créer un portefeuille de contrats</a> pour stocker de l'Exp.",
+            "walletNote": "La plupart des plateformes d'échange ne supportent pour l'instant pas la réception d'exp depuis un Wallet Contract. Assurez-vous de déplacer votre argent sur une adresse de compte personnel d'abord!",
             "addressCopiedToClipboard": "Copié dans le presse-papier",
             "qrCodeLabel": "Pointer une app mobile compatible vers ce code",
             "dailyLimit": "Limite journalière",
             "dailyLimitRemaining": "restants aujourd'hui",
             "requiredSignatures": "Signatures requises",
             "owners": "Possesseurs",
-            "walletsDescription": "Ceci sont des contrats qui sont stockés sur la blockchain et pouvant détenir et sécuriser de l'Ether. Ils peuvent avoir de multiple comptes comme propriétaires et conservent un registre complet de toutes les transactions.",
-            "walletsDescriptionNotEnoughFunds": "Dès lors que vous avez plus de 1 ether vous pouvez créer des contrats plus sophistiqués. Les portefeuilles sont un type basique de contrat intelligent qui permettent à vos fonds d'être contrôlés par de multiples comptes et qui ont une option de limite de retrait journalier pour augmenter la sécurité. Pour créer vos propres contrats personnalisés, allez sur l'onglet <em> Contrats </em>.",
-            "accountsDescription": "Les comptes sont des clés protégées par mot-de-passe qui peuvent détenir de l'Ether, sécuriser des jetons ou coins basés sur ethereum, et contrôler des contrats. Comptes ne peut pas afficher les transactions entrantes.",
+            "walletsDescription": "Ceci sont des contrats qui sont stockés sur la blockchain et pouvant détenir et sécuriser de l'Exp. Ils peuvent avoir de multiple comptes comme propriétaires et conservent un registre complet de toutes les transactions.",
+            "walletsDescriptionNotEnoughFunds": "Dès lors que vous avez plus de 1 exp vous pouvez créer des contrats plus sophistiqués. Les portefeuilles sont un type basique de contrat intelligent qui permettent à vos fonds d'être contrôlés par de multiples comptes et qui ont une option de limite de retrait journalier pour augmenter la sécurité. Pour créer vos propres contrats personnalisés, allez sur l'onglet <em> Contrats </em>.",
+            "accountsDescription": "Les comptes sont des clés protégées par mot-de-passe qui peuvent détenir de l'Exp, sécuriser des jetons ou coins basés sur expanse, et contrôler des contrats. Comptes ne peut pas afficher les transactions entrantes.",
             "buttons": {
-                "deposit": "Déposer de l'Ether",
+                "deposit": "Déposer de l'Exp",
                 "depositBitcoin": "Déposer via du Bitcoin",
                 "copyAddress": "Copier adresse",
                 "scanQRCode": "Montrer QR-Code",
@@ -189,7 +189,7 @@
                     "description": "Un contrat contrôlé par de multiples comptes",
                     "text1": "Ceci est un compte joint contrôlé par",
                     "text2": "propriétaires. Vous pouvez envoyer jusqu'à",
-                    "text3": "ether par jour.",
+                    "text3": "exp par jour.",
                     "text4": "Toute transaction au delà de cette limite journalière nécessite la confirmation de",
                     "text5": "propriétaires.",
                     "accountOwnersTitle": "Propriétaires du compte",
@@ -242,7 +242,7 @@
             "texts": {
                 "ownerPaysGas": "Le Gas est payé par le propriétaire du Wallet Contract",
                 "sendAmount": "Vous voulez envoyer <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "Vous voulez envoyer <strong>__amount__</strong> en ether, en utilisant les taux d'échanges depuis <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Ce qui présentement est équivalent à <strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "Vous voulez envoyer <strong>__amount__</strong> en exp, en utilisant les taux d'échanges depuis <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Ce qui présentement est équivalent à <strong>__etherAmount__</strong>.",
                 "sendToken": "Vous voulez envoyer <strong>__amount__ __symbol__</strong> de <strong> __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">Ce montant est supérieur à la limite journalière restante __limit__ (de __total__ par jour), donc il vous faut __count__ autres comptes pour confirmer.</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">Ce montant est supérieur à la limite journalière restante de __limit__ (de __total__ par jour), donc il vous faut __count__ autres comptes pour confirmer.</p>",
@@ -251,7 +251,7 @@
                 "noCodeInRecipient": "Le compte destinataire n'est pas un contrat, donc vous ne pouvez rien exécuter. <strong> Placer une adresse de contrat dans le champ 'TO'. </strong>",
                 "addData": "Vous pouvez ajouter des données supplémentaire à envoyer avec votre transaction. Si vous laissez le champ \"to\" vide, un contrat essayera de se déployer depuis votre propre Data.",
                 "dataNotExecutable": "Cette Data ne semble pas exécutable, cela signifie que la transaction utilisera tout le Gas fourni.",
-                "cantEstimateGas": "Nous ne pouvons pas estimer correctement votre utilisation de Gas car vous avez besoin d'au moins 1 ether sur votre compte.",
+                "cantEstimateGas": "Nous ne pouvons pas estimer correctement votre utilisation de Gas car vous avez besoin d'au moins 1 exp sur votre compte.",
                 "estimatedGas": "Gas nécessaire estimé",
                 "timeTexts": {
                     "0": "en quelques minutes ou plus",
@@ -267,7 +267,7 @@
             "title": "Personnaliser <strong>Tokens</strong>",
             "subTitle": "Tokens ajoutés",
             "admin": "__name__ (page admin)",
-            "description": "Les Tokens sont des devises et autres fongibles construits sur la plateforme Expanse. Pour que les comptes puissent voir et envoyer des Tokens, vous devez ajouter leur adresse à cette liste. Vous pouvez créer votre propre Token simplement en modifiant <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">this example of a custom token contract</a> ou en en apprenant plus sur <a href=\"https://www.ethereum.org/token#the-code\" target=\"_blank\">Ethereum Tokens</a>.",
+            "description": "Les Tokens sont des devises et autres fongibles construits sur la plateforme Expanse. Pour que les comptes puissent voir et envoyer des Tokens, vous devez ajouter leur adresse à cette liste. Vous pouvez créer votre propre Token simplement en modifiant <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">this example of a custom token contract</a> ou en en apprenant plus sur <a href=\"https://www.expanse.tech/token#the-code\" target=\"_blank\">Expanse Tokens</a>.",
             "deleteToken": "Voulez-vous supprimer le Token <strong>__token__</strong> de votre liste?",
             "addedToken": "__token__ ajouté à votre watch-liste",
             "editedToken": "Token __token__ édité",
@@ -295,7 +295,7 @@
             "writeToContract": "Ecrire au contrat",
             "pickContract": "Choisir un contrat",
             "pickFunction": "Choisir une fonction",
-            "noContract": "<p>Placez la source du contrat désiré ici. Vous trouverez de nombreux exemples de contrats à <a href=\"http://ethereum.org\" target=\"_blank\">ethereum.org</a>: </p> <ul><li><a href=\"http://ethereum.org/token#the-code\" target=\"_blank\">Build a token</a></li><li><a href=\"http://ethereum.org/crowdsale#the-code\" target=\"_blank\">Start a crowdsale</a></li><li><a href=\"http://ethereum.org/dao#the-code\" target=\"_blank\">Create a blockchain organization</a></li></ul>",
+            "noContract": "<p>Placez la source du contrat désiré ici. Vous trouverez de nombreux exemples de contrats à <a href=\"http://expanse.tech\" target=\"_blank\">expanse.tech</a>: </p> <ul><li><a href=\"http://expanse.tech/token#the-code\" target=\"_blank\">Build a token</a></li><li><a href=\"http://expanse.tech/crowdsale#the-code\" target=\"_blank\">Start a crowdsale</a></li><li><a href=\"http://expanse.tech/dao#the-code\" target=\"_blank\">Create a blockchain organization</a></li></ul>",
             "buttons": {
                 "showContractInfo": "Montrer info contrat",
                 "hideContractInfo": "Cacher info contrat",
