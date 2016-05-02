@@ -137,7 +137,7 @@ Template['views_contracts'].events({
     'click .add-contract': function(){
 
         // Open a modal 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             template: 'views_modals_addCustomContract',
             ok: addCustomContract,
             cancel: true
@@ -154,7 +154,7 @@ Template['views_contracts'].events({
         e.preventDefault();
 
         // Open a modal 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             template: 'views_modals_addToken',
             ok: addToken,
             cancel: true
@@ -171,7 +171,7 @@ Template['views_contracts'].events({
         e.preventDefault();
 
         // Open a modal 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             template: 'views_modals_addToken',
             data: this,
             ok: addToken.bind(this),

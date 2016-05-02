@@ -41,7 +41,7 @@ Template['elements_tokenBox'].events({
         e.preventDefault();
         e.stopImmediatePropagation();
 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             text: new Spacebars.SafeString(TAPi18n.__('wallet.tokens.deleteToken', {token: token.name})),
             ok: function(){
                 Tokens.remove(token._id);

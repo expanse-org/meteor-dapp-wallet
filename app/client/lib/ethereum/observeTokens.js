@@ -83,7 +83,7 @@ var setupContractFilters = function(newDocument){
                     }, function() {
 
                         // on click show tx info
-                        EthElements.Modal.show({
+                        ExpElements.Modal.show({
                             template: 'views_modals_transactionInfo',
                             data: {
                                 _id: txId

@@ -279,11 +279,11 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
                         Helpers.showNotification('wallet.transactions.notifications.incomingTransaction', {
                             to: Helpers.getAccountNameByAddress(newDocument.address),
                             from: Helpers.getAccountNameByAddress(log.args.from),
-                            amount: EthTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'exp')
+                            amount: ExpTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'expanse')
                         }, function() {
 
                             // on click show tx info
-                            EthElements.Modal.show({
+                            ExpElements.Modal.show({
                                 template: 'views_modals_transactionInfo',
                                 data: {
                                     _id: txId
@@ -306,11 +306,11 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
                         Helpers.showNotification('wallet.transactions.notifications.outgoingTransaction', {
                             to: Helpers.getAccountNameByAddress(log.args.to),
                             from: Helpers.getAccountNameByAddress(newDocument.address),
-                            amount: EthTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'exp')
+                            amount: ExpTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'expanse')
                         }, function() {
 
                             // on click show tx info
-                            EthElements.Modal.show({
+                            ExpElements.Modal.show({
                                 template: 'views_modals_transactionInfo',
                                 data: {
                                     _id: txId
@@ -374,7 +374,7 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
                                         initiator: Helpers.getAccountNameByAddress(log.args.initiator),
                                         to: Helpers.getAccountNameByAddress(log.args.to),
                                         from: Helpers.getAccountNameByAddress(newDocument.address),
-                                        amount: EthTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'exp')
+                                        amount: ExpTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'expanse')
                                     }, function() {
                                         FlowRouter.go('/account/'+ newDocument.address);
                                     });
@@ -586,7 +586,7 @@ observeWallets = function(){
                                     setupContractFilters(newDocument);
 
                                     // Show backup note
-                                    EthElements.Modal.question({
+                                    ExpElements.Modal.question({
                                         template: 'views_modals_backupContractAddress',
                                         data: {
                                             address: contract.address

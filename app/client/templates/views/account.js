@@ -99,7 +99,7 @@ Template['views_account'].events({
     'click button.delete': function(e, template){
         var data = this;
 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             text: new Spacebars.SafeString(TAPi18n.__('wallet.accounts.modal.deleteText') + 
                 '<br><input type="text" class="deletionConfirmation" autofocus="true">'),
             ok: function(){
@@ -207,7 +207,7 @@ Template['views_account'].events({
         e.preventDefault();
         
         // Open a modal showing the QR Code
-        EthElements.Modal.show({
+        ExpElements.Modal.show({
             template: 'views_modals_qrCode',
             data: {
                 address: this.address
@@ -231,7 +231,7 @@ Template['views_account'].events({
         })
 
         // Open a modal showing the QR Code
-        EthElements.Modal.show({
+        ExpElements.Modal.show({
             template: 'views_modals_interface',
             data: {
                 jsonInterface: cleanJsonInterface

@@ -66,13 +66,13 @@ Deploys testnet wallet, when on other orig wallet was found
 var deployTestnetWallet = function() {
     var account = web3.eth.accounts[0];
 
-    EthElements.Modal.question({
+    ExpElements.Modal.question({
         text: new Spacebars.SafeString(TAPi18n.__('wallet.modals.testnetWallet.walletNeedsDeployment', {account: account})),
         cancel: true,
         ok: function() {
 
             // show loading
-            EthElements.Modal.show('views_modals_loading', {closeable: false});
+            ExpElements.Modal.show('views_modals_loading', {closeable: false});
 
             // deploy testnet wallet
             WalletContract.new([],'','', {
@@ -87,7 +87,7 @@ var deployTestnetWallet = function() {
                         LocalStore.set('expanse_testnetWalletContractAddress', contract.address);
                         replaceStubAddress(contract.address);
 
-                        EthElements.Modal.question({
+                        ExpElements.Modal.question({
                             text: new Spacebars.SafeString(TAPi18n.__('wallet.modals.testnetWallet.testnetWalletDeployed', {address: web3.toChecksumAddress(contract.address)})),
                             ok: true
                         });
@@ -102,7 +102,7 @@ var deployTestnetWallet = function() {
                         duration: 8
                     });
 
-                    EthElements.Modal.hide();
+                    ExpElements.Modal.hide();
                 }
             });
         }

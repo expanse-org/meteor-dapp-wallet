@@ -78,7 +78,7 @@ Helpers.formatNumberByDecimals = function(number, decimals){
         numberFormat += "0";
     }
 
-    return EthTools.formatNumber(new BigNumber(number, 10).dividedBy(Math.pow(10, decimals)), numberFormat);
+    return ExpTools.formatNumber(new BigNumber(number, 10).dividedBy(Math.pow(10, decimals)), numberFormat);
 };
 
 /**
@@ -257,7 +257,7 @@ Helpers.formatTransactionBalance = function(value, exchangeRates, unit) {
     if(unit instanceof Spacebars.kw)
         unit = null;
 
-    var unit = unit || EthTools.getUnit(),
+    var unit = unit || ExpTools.getUnit(),
         format = '0,0.00';
 
     if((unit === 'usd' || unit === 'eur' || unit === 'btc') &&
@@ -269,9 +269,9 @@ Helpers.formatTransactionBalance = function(value, exchangeRates, unit) {
             format += '[0]';
         
         var price = new BigNumber(String(web3.fromWei(value, 'ether')), 10).times(exchangeRates[unit].price);
-        return EthTools.formatNumber(price, format) + ' '+ unit.toUpperCase();
+        return ExpTools.formatNumber(price, format) + ' '+ unit.toUpperCase();
     } else {
-        return EthTools.formatBalance(value, format + '[0000000000000000] UNIT');
+        return ExpTools.formatBalance(value, format + '[0000000000000000] UNIT');
     }
 };
 

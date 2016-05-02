@@ -77,7 +77,7 @@ var connect = function(){
             // if in mist, tell to start gexp, otherwise start with RPC
             var gexpRPC = (web3.admin) ? 'gexp' : 'gexp --rpc --rpccorsdomain "'+window.location.protocol + '//' + window.location.host+'"';
 
-            EthElements.Modal.question({
+            ExpElements.Modal.question({
                 text: new Spacebars.SafeString(TAPi18n.__('wallet.app.texts.connectionError' + (web3.admin ? 'Mist' : 'Browser'), 
                     {node: gexpRPC})),
                 ok: function(){

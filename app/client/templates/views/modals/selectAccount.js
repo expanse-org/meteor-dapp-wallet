@@ -34,6 +34,6 @@ Template['views_modals_selectAccount'].events({
     */
     'click .dapp-account-list button': function(e, template){
         template.data.callback(this.address);
-        EthElements.Modal.hide();
+        ExpElements.Modal.hide();
     }
 });

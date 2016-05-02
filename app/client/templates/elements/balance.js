@@ -26,17 +26,17 @@ Template['elements_balance'].helpers({
     'convertedBalance': function(){
         var balance = TemplateVar.get('balance');
         
-        if (EthTools.getUnit() === 'noether') return 'infinite';
+        if (ExpTools.getUnit() === 'noether') return 'infinite';
 
         if(balance){
-            if(EthTools.getUnit() === 'usd' || EthTools.getUnit() === 'eur')
-                return EthTools.formatBalance(TemplateVar.get('balance'), '0,0.00');
-            else if(EthTools.getUnit() === 'ether')
-                return EthTools.formatBalance(TemplateVar.get('balance'), (this.showAllDecimals? '0,0.00[0000000000000000]' : '0,0.00') );
-            else if(EthTools.getUnit() === 'finney')
-                return EthTools.formatBalance(TemplateVar.get('balance'), (this.showAllDecimals? '0,0.00[00000000000000]' : '0,0.00'));
+            if(ExpTools.getUnit() === 'usd' || ExpTools.getUnit() === 'eur')
+                return ExpTools.formatBalance(TemplateVar.get('balance'), '0,0.00');
+            else if(ExpTools.getUnit() === 'expanse')
+                return ExpTools.formatBalance(TemplateVar.get('balance'), (this.showAllDecimals? '0,0.00[0000000000000000]' : '0,0.00') );
+            else if(ExpTools.getUnit() === 'finney')
+                return ExpTools.formatBalance(TemplateVar.get('balance'), (this.showAllDecimals? '0,0.00[00000000000000]' : '0,0.00'));
             else
-                return EthTools.formatBalance(TemplateVar.get('balance'), '0,0.00[000000]');
+                return ExpTools.formatBalance(TemplateVar.get('balance'), '0,0.00[000000]');
         }
     },
     /**

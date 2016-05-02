@@ -20,6 +20,6 @@ Template['views_modals_sendTransactionInfo'].helpers({
     */
     'estimatedFee': function() {
         if(this.estimatedGas && this.gasPrice)
-            return EthTools.formatBalance(new BigNumber(this.estimatedGas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000] unit', 'exp');
+            return ExpTools.formatBalance(new BigNumber(this.estimatedGas, 10).times(new BigNumber(this.gasPrice, 10)), '0,0.0[0000000] unit', 'expanse');
     }
 });

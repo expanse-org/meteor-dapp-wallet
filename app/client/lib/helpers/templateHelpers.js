@@ -41,12 +41,12 @@ Template.registerHelper('isMistMode', function(){
 });
 
 /**
-Check if currenct unit is an ether unit
+Check if currenct unit is an expanse unit
 
 @method (isEtherUnit)
 **/
 Template.registerHelper('isEtherUnit', function(){
-    var unit = EthTools.getUnit();
+    var unit = ExpTools.getUnit();
     return !(unit === 'usd' || unit === 'eur' || unit === 'btc');
 });
 
@@ -57,7 +57,7 @@ Return the current unit
 @method (unit)
 **/
 Template.registerHelper('unit', function(){
-    return EthTools.getUnit();
+    return ExpTools.getUnit();
 });
 
 /**
@@ -151,7 +151,7 @@ Template.registerHelper('formatTime', Helpers.formatTime);
 /**
 Formats a given transactions balance
 
-    {{formatTransactionBalance value exchangeRates "ether"}}
+    {{formatTransactionBalance value exchangeRates "expanse"}}
 
 @method formatTransactionBalance
 @param {String} value  the value to format

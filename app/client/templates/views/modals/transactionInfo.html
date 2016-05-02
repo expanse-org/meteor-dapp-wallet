@@ -38,10 +38,10 @@
                             {{tokenValue}}
                         {{else}}
                             {{formatTransactionBalance value exchangeRates}}
-                            {{#if $neq unit 'ether'}}
+                            {{#if $neq unit 'expanse'}}
                                 <br>
                                 <small>
-                                    ({{dapp_formatBalance value "0,0.00[000000] UNIT" "exp"}})
+                                    ({{dapp_formatBalance value "0,0.00[000000] UNIT" "expanse"}})
                                 </small>
                             {{/if}}
                         {{/if}}
