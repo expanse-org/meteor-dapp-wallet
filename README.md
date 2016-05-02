@@ -1,6 +1,7 @@
-# Ethereum Wallet Ðapp
+# Expanse Wallet Ðapp
 
-The Ethereum wallet.
+The Expanse wallet. 
+This project is based on [Ethereum Wallet Ðapp](https://github.com/ethereum/meteor-dapp-wallet) and has been extended by the expanse project.
 
 **NOTE** The wallet is not yet official released,
 can contain severe bugs!
