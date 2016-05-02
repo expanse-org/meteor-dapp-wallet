@@ -32,6 +32,7 @@ updateMistMenu = function(){
             mist.menu.add(account._id,{
                 position: 3 + index,
                 name: account.name,
+                badge: ExpTools.formatBalance(account.balance, "0 a", 'expanse')+ ' EXP',
                 selected: (location.pathname === '/account/'+ account.address)
             }, function(){
                 FlowRouter.go('/account/'+ account.address);

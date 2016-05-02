@@ -35,9 +35,9 @@ var checkOverDailyLimit = function(address, wei, template){
 
     if(account && account.requiredSignatures > 1 && !_.isUndefined(account.dailyLimit) && account.dailyLimit !== ethereumConfig.dailyLimitDefault && Number(wei) !== 0) {
         if(restDailyLimit.lt(new BigNumber(wei, 10)))
-            TemplateVar.set('dailyLimitText', new Spacebars.SafeString(TAPi18n.__('wallet.send.texts.overDailyLimit', {limit: EthTools.formatBalance(restDailyLimit.toString(10)), total: EthTools.formatBalance(account.dailyLimit), count: account.requiredSignatures - 1})));
+            TemplateVar.set('dailyLimitText', new Spacebars.SafeString(TAPi18n.__('wallet.send.texts.overDailyLimit', {limit: ExpTools.formatBalance(restDailyLimit.toString(10)), total: ExpTools.formatBalance(account.dailyLimit), count: account.requiredSignatures - 1})));
         else
-            TemplateVar.set('dailyLimitText', new Spacebars.SafeString(TAPi18n.__('wallet.send.texts.underDailyLimit', {limit: EthTools.formatBalance(restDailyLimit.toString(10)), total: EthTools.formatBalance(account.dailyLimit)})));
+            TemplateVar.set('dailyLimitText', new Spacebars.SafeString(TAPi18n.__('wallet.send.texts.underDailyLimit', {limit: ExpTools.formatBalance(restDailyLimit.toString(10)), total: ExpTools.formatBalance(account.dailyLimit)})));
     } else
         TemplateVar.set('dailyLimitText', false);
 };
@@ -111,10 +111,10 @@ Template['views_send'].onCreated(function(){
 
     // change the amount when the currency unit is changed
     template.autorun(function(c){
-        var unit = EthTools.getUnit();
+        var unit = ExpTools.getUnit();
 
-        if(!c.firstRun && TemplateVar.get('selectedToken') === 'ether') {
-            TemplateVar.set('amount', EthTools.toWei(template.find('input[name="amount"]').value.replace(',','.'), unit));
+        if(!c.firstRun && TemplateVar.get('selectedToken') === 'expanse') {
+            TemplateVar.set('amount', ExpTools.toWei(template.find('input[name="amount"]').value.replace(',','.'), unit));
         }
     });
 });
@@ -170,7 +170,7 @@ Template['views_send'].onRendered(function(){
         //         }));
 
         // Ether tx estimation
-        if(tokenAddress === 'ether') {
+        if(tokenAddress === 'expanse') {
 
             if(EthAccounts.findOne({address: address}, {reactive: false})) {
                 web3.eth.estimateGas({
@@ -214,14 +214,14 @@ Template['views_send'].helpers({
         // Deploy contract
         if(this && this.deployContract) {
             TemplateVar.set('selectedAction', 'deploy-contract');
-            TemplateVar.set('selectedToken', 'ether');
+            TemplateVar.set('selectedToken', 'expanse');
             TemplateVar.setTo('.compile-contract', 'selectedType', 'source-code');
 
 
         // Send funds
         } else {
             TemplateVar.set('selectedAction', 'send-funds');
-            TemplateVar.set('selectedToken', FlowRouter.getParam('token') || 'ether');
+            TemplateVar.set('selectedToken', FlowRouter.getParam('token') || 'expanse');
         }
     },
     /**
@@ -295,10 +295,10 @@ Template['views_send'].helpers({
         if(!_.isFinite(amount))
             return '0';
 
-        // ether
+        // expanse
         var gasInWei = TemplateVar.getFrom('.dapp-select-gas-price', 'gasInWei') || '0';
 
-        if (TemplateVar.get('selectedToken') === 'ether') {
+        if (TemplateVar.get('selectedToken') === 'expanse') {
             amount = (selectedAccount && selectedAccount.owners)
                 ? amount
                 : new BigNumber(amount, 10).plus(new BigNumber(gasInWei, 10));
@@ -322,7 +322,7 @@ Template['views_send'].helpers({
         return Helpers.formatNumberByDecimals(amount, token.decimals);
     },
     /**
-    Returns the total amount - the fee paid to send all ether/coins out of the account
+    Returns the total amount - the fee paid to send all expanse/coins out of the account
 
     @method (sendAllAmount)
     */
@@ -330,7 +330,7 @@ Template['views_send'].helpers({
         var selectedAccount = Helpers.getAccountByAddress(TemplateVar.getFrom('.dapp-select-account', 'value'));
         var amount = 0;
 
-        if (TemplateVar.get('selectedToken') === 'ether') {
+        if (TemplateVar.get('selectedToken') === 'expanse') {
             var gasInWei = TemplateVar.getFrom('.dapp-select-gas-price', 'gasInWei') || '0';
 
             // deduct fee if account, for contracts use full amount
@@ -440,7 +440,7 @@ Template['views_send'].events({
     @event click .token-ether
     */
     'click .token-ether': function(e, template){
-        TemplateVar.set('selectedToken', 'ether');
+        TemplateVar.set('selectedToken', 'expanse');
 
         // trigger amount box change
         template.$('input[name="amount"]').trigger('change');
@@ -462,9 +462,9 @@ Template['views_send'].events({
     @event keyup input[name="amount"], change input[name="amount"], input input[name="amount"]
     */
     'keyup input[name="amount"], change input[name="amount"], input input[name="amount"]': function(e, template){
-        // ether
-        if(TemplateVar.get('selectedToken') === 'ether') {
-            var wei = EthTools.toWei(e.currentTarget.value.replace(',','.'));
+        // expanse
+        if(TemplateVar.get('selectedToken') === 'expanse') {
+            var wei = ExpTools.toWei(e.currentTarget.value.replace(',','.'));
 
             TemplateVar.set('amount', wei || '0');
 
@@ -506,7 +506,7 @@ Template['views_send'].events({
                 estimatedGas = 21000;
 
             // if its a wallet contract and tokens, don't need to remove the gas addition on send-all, as the owner pays
-            if(sendAll && (selectedAccount.owners || tokenAddress !== 'ether'))
+            if(sendAll && (selectedAccount.owners || tokenAddress !== 'expanse'))
                 sendAll = false;
 
 
@@ -533,7 +533,7 @@ Template['views_send'].events({
                 });
 
 
-            if(tokenAddress === 'ether') {
+            if(tokenAddress === 'expanse') {
                 
                 if((_.isEmpty(amount) || amount === '0' || !_.isFinite(amount)) && !data)
                     return GlobalNotification.warning({
@@ -565,7 +565,7 @@ Template['views_send'].events({
             var sendTransaction = function(estimatedGas){
 
                 // show loading
-                // EthElements.Modal.show('views_modals_loading');
+                // ExpElements.Modal.show('views_modals_loading');
 
                 TemplateVar.set(template, 'sending', true);
 
@@ -575,8 +575,8 @@ Template['views_send'].events({
                 console.log('Finally choosen gas', estimatedGas);
 
                 
-                // ETHER TX
-                if(tokenAddress === 'ether') {
+                // EXPANSE TX
+                if(tokenAddress === 'expanse') {
                     console.log('Send Expanse');
 
                     // CONTRACT TX
@@ -603,7 +603,7 @@ Template['views_send'].events({
                                 FlowRouter.go('dashboard');
 
                             } else {
-                                // EthElements.Modal.hide();
+                                // ExpElements.Modal.hide();
 
                                 GlobalNotification.error({
                                     content: error.message,
@@ -642,7 +642,7 @@ Template['views_send'].events({
                                 FlowRouter.go('dashboard');
                             } else {
 
-                                // EthElements.Modal.hide();
+                                // ExpElements.Modal.hide();
 
                                 GlobalNotification.error({
                                     content: error.message,
@@ -685,7 +685,7 @@ Template['views_send'].events({
                                 FlowRouter.go('dashboard');
 
                             } else {
-                                // EthElements.Modal.hide();
+                                // ExpElements.Modal.hide();
 
                                 GlobalNotification.error({
                                     content: error.message,
@@ -718,7 +718,7 @@ Template['views_send'].events({
 
                             } else {
 
-                                // EthElements.Modal.hide();
+                                // ExpElements.Modal.hide();
 
                                 GlobalNotification.error({
                                     content: error.message,
@@ -736,7 +736,7 @@ Template['views_send'].events({
 
                 console.log('estimatedGas: ' + estimatedGas);
                 
-                EthElements.Modal.question({
+                ExpElements.Modal.question({
                     template: 'views_modals_sendTransactionInfo',
                     data: {
                         from: selectedAccount.address,
