@@ -30,10 +30,10 @@ var checkOverDailyLimit = function(address, wei, template){
     // check if under or over dailyLimit
     account = Helpers.getAccountByAddress(address);
 
-    // check whats left
-    var restDailyLimit = new BigNumber(account.dailyLimit || '0', 10).minus(new BigNumber(account.dailyLimitSpent || '0', 10));
-
     if(account && account.requiredSignatures > 1 && !_.isUndefined(account.dailyLimit) && account.dailyLimit !== ethereumConfig.dailyLimitDefault && Number(wei) !== 0) {
+        // check whats left
+        var restDailyLimit = new BigNumber(account.dailyLimit || '0', 10).minus(new BigNumber(account.dailyLimitSpent || '0', 10));
+
         if(restDailyLimit.lt(new BigNumber(wei, 10)))
             TemplateVar.set('dailyLimitText', new Spacebars.SafeString(TAPi18n.__('wallet.send.texts.overDailyLimit', {limit: ExpTools.formatBalance(restDailyLimit.toString(10)), total: ExpTools.formatBalance(account.dailyLimit), count: account.requiredSignatures - 1})));
         else
@@ -272,8 +272,8 @@ Template['views_send'].helpers({
         if(!selectedAccount)
             return;
 
-        query['balances.'+ selectedAccount._id] = {$exists: true, $ne: '0'};   
-     
+        query['balances.'+ selectedAccount._id] = {$exists: true, $ne: '0'};
+
         return (TemplateVar.get('selectedAction') === 'send-funds' && !!Tokens.findOne(query, {field: {_id: 1}}));
     },
     /**
@@ -385,8 +385,8 @@ Template['views_send'].helpers({
             amount: Helpers.formatNumberByDecimals(amount, token.decimals),
             name: token.name,
             symbol: token.symbol
-        })); 
-        
+        }));
+
     },
     /**
     Get Balance of a token
@@ -427,7 +427,7 @@ Template['views_send'].helpers({
 Template['views_send'].events({
     /**
     Send all funds
-    
+
     @event change input.send-all
     */
     'change input.send-all': function(e){
@@ -435,8 +435,8 @@ Template['views_send'].events({
         TemplateVar.set('amount', 0);
     },
     /**
-    Select a token 
-    
+    Select a token
+
     @event click .token-ether
     */
     'click .token-ether': function(e, template){
@@ -446,8 +446,8 @@ Template['views_send'].events({
         template.$('input[name="amount"]').trigger('change');
     },
     /**
-    Select a token 
-    
+    Select a token
+
     @event click .select-token
     */
     'click .select-token input': function(e, template){
@@ -458,7 +458,7 @@ Template['views_send'].events({
     },
     /**
     Set the amount while typing
-    
+
     @event keyup input[name="amount"], change input[name="amount"], input input[name="amount"]
     */
     'keyup input[name="amount"], change input[name="amount"], input input[name="amount"]': function(e, template){
@@ -469,10 +469,10 @@ Template['views_send'].events({
             TemplateVar.set('amount', wei || '0');
 
             checkOverDailyLimit(template.find('select[name="dapp-select-account"]').value, wei, template);
-        
+
         // token
         } else {
-            
+
             var token = Tokens.findOne({address: TemplateVar.get('selectedToken')}),
                 amount = e.currentTarget.value || '0';
 
@@ -483,7 +483,7 @@ Template['views_send'].events({
     },
     /**
     Submit the form and send the transaction!
-    
+
     @event submit form
     */
     'submit form': function(e, template){
@@ -518,13 +518,11 @@ Template['views_send'].events({
                     duration: 2
                 });
 
-
-            if(selectedAccount.balance === '0')
+            if(selectedAccount.balance === '0' && (!selectedAccount.owners || tokenAddress === 'ether'))
                 return GlobalNotification.warning({
                     content: 'i18n:wallet.send.error.emptyWallet',
                     duration: 2
                 });
-
 
             if(!web3.isAddress(to) && !data)
                 return GlobalNotification.warning({
@@ -532,9 +530,8 @@ Template['views_send'].events({
                     duration: 2
                 });
 
-
             if(tokenAddress === 'expanse') {
-                
+
                 if((_.isEmpty(amount) || amount === '0' || !_.isFinite(amount)) && !data)
                     return GlobalNotification.warning({
                         content: 'i18n:wallet.send.error.noAmount',
@@ -558,7 +555,7 @@ Template['views_send'].events({
                         duration: 2
                     });
             }
-            
+
 
 
             // The function to send the transaction
@@ -574,7 +571,7 @@ Template['views_send'].events({
                 estimatedGas = estimatedGas || Number($('.send-transaction-info input.gas').val());
                 console.log('Finally choosen gas', estimatedGas);
 
-                
+
                 // EXPANSE TX
                 if(tokenAddress === 'expanse') {
                     console.log('Send Expanse');
@@ -583,7 +580,7 @@ Template['views_send'].events({
                     if(contracts['ct_'+ selectedAccount._id]) {
 
                         contracts['ct_'+ selectedAccount._id].execute.sendTransaction(to || '', amount || '', data || '', {
-                            from: selectedAccount.owners[0],
+                            from: Helpers.getOwnedAccountFrom(selectedAccount.owners),
                             gasPrice: gasPrice,
                             gas: estimatedGas
                         }, function(error, txHash){
@@ -600,6 +597,10 @@ Template['views_send'].events({
 
                                 addTransactionAfterSend(txHash, amount, selectedAccount.address, to, gasPrice, estimatedGas, data);
 
+                                localStorage.setItem('contractSource', 'contract MyContract {\n    /* Constructor */\n    function MyContract() {\n \n    }\n}');
+                                localStorage.setItem('compiledContracts', null);
+                                localStorage.setItem('selectedContract', null);
+
                                 FlowRouter.go('dashboard');
 
                             } else {
@@ -611,10 +612,10 @@ Template['views_send'].events({
                                 });
                             }
                         });
-                    
+
                     // SIMPLE TX
                     } else {
-                        
+
                         console.log('Gas Price: '+ gasPrice);
                         console.log('Amount:', amount);
 
@@ -639,6 +640,10 @@ Template['views_send'].events({
 
                                 addTransactionAfterSend(txHash, amount, selectedAccount.address, to, gasPrice, estimatedGas, data);
 
+                                localStorage.setItem('contractSource', 'contract MyContract {\n    /* Constructor */\n    function MyContract() {\n \n    }\n}');
+                                localStorage.setItem('compiledContracts', null);
+                                localStorage.setItem('selectedContract', null);
+
                                 FlowRouter.go('dashboard');
                             } else {
 
@@ -650,7 +655,7 @@ Template['views_send'].events({
                                 });
                             }
                         });
-                         
+
                     }
 
 
@@ -668,8 +673,9 @@ Template['views_send'].events({
                             gas: estimatedGas
                         });
 
+
                         contracts['ct_'+ selectedAccount._id].execute.sendTransaction(tokenAddress, '0', tokenSendData, {
-                            from: selectedAccount.owners[0],
+                            from: Helpers.getOwnedAccountFrom(selectedAccount.owners),
                             gasPrice: gasPrice,
                             gas: estimatedGas
                         }, function(error, txHash){
@@ -735,7 +741,7 @@ Template['views_send'].events({
             if(typeof mist === 'undefined') {
 
                 console.log('estimatedGas: ' + estimatedGas);
-                
+
                 ExpElements.Modal.question({
                     template: 'views_modals_sendTransactionInfo',
                     data: {
@@ -760,5 +766,3 @@ Template['views_send'].events({
         }
     }
 });
-
-

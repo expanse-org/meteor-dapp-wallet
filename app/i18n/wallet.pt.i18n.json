@@ -30,6 +30,7 @@
                 "blockReceived": "Novo bloco recebido",
                 "timeSinceBlock": "desde último bloco",
                 "peers": "conexões",
+                "waitingForBlocks": "Aguardando blocos..",
                 "testnetExplain": "Você está na rede de teste, NÃO ENVIE exps de verdade para essas contas",
                 "noAccounts": {
                     "title": "Você ainda não tem contas",
@@ -38,6 +39,15 @@
             },
             "error": {
                 "wrongChain": "Você está na rede errada. Por favor reinicie esse aplicativo."
+            },
+            "warnings": {
+                "txOriginVulnerabilityWallet": "Esta carteira contrato inteligente tem código desatualizados e está sujeito a ataques de phishing. ",
+                "txOriginVulnerabilityCallToAction":"Atualize seu contrato agora e transferir todos os seus recursos para o novo.",
+                "txOriginVulnerabilityAccount": "Essa conta administra uma carteira vulnerável e utiliza-la com contratos maliciosos pode pôr em perigo os seus fundos. Atualize sua carteira antes de fazer quaisquer transações com esta conta.",
+                "txOriginVulnerabilityPopup": "Encontramos carteiras vulneráveis! Certifique-se de implantar novas carteiras e mover os fundos!",
+                "checkThisNow": "Mostre-me agora",
+                "checkThisLater": "Eu vejo depois",
+                "learnMore": "Saiba mais sobre esta vulnerabilidade"
             }
         },
         "modals": {
@@ -72,6 +82,7 @@
             "accountNote": "Contas podem armazenar exp mas não exibem transações recebidas. Para tal, <a href=\"/account/new\">crie um contrato de carteira</a>.",
             "walletNote": "Algumas exchanges tem dificuldades técnicas com transações enviadas de contratos. Passe o exp para uma conta simples antes",
             "addressCopiedToClipboard": "Copiado para área de transferência",
+            "addressNotCopiedToClipboard": "Erro ao copiar endereço. Tente novamente.",
             "qrCodeLabel": "Abra um aplicativo compatível e aponte a camera do seu celular aqui.",
             "dailyLimit": "Limite diário",
             "dailyLimitRemaining": "restantes hoje",
@@ -92,7 +103,10 @@
                 "backupWallet": {
                     "title": "Faça uma cópia de segurança dessa carteira!",
                     "description": "Escreva esse endereço em algum lugar"
-                }
+                },
+                "copyAddressWarning": "<strong>Atenção:</strong> você está em uma rede de testes. Cuidado para não transferir fundos reais esta conta.",
+                "buttonOk": "Copie mesmo assim",
+                "buttonCancel": "Melhor não..."
             }
         },
         "events": {
@@ -119,7 +133,7 @@
             "amount": "Quantidade",
             "gasPrice": "Preço do combustível",
             "perMillionGas": " POR MILHÃO DE COMBUSTÍVEL",
-            "gasUsed": "Combustível usado", 
+            "gasUsed": "Combustível usado",
             "feePaid": "Taxa paga",
             "data": "Dados de envio",
             "deployedData": "Dados enviados",
@@ -161,7 +175,7 @@
                 },
                 "outgoingTransaction": {
                     "title": "Pagamento enviado",
-                    "text": "Você enviou  __amount__ de __from__ para __to__."    
+                    "text": "Você enviou  __amount__ de __from__ para __to__."
                 },
                 "pendingConfirmation": {
                     "title": "Confirmação necessária",
@@ -227,12 +241,12 @@
             "feeLow": "Mais Barato",
             "feeHigh": "Mais Rápido",
             "addData": "Adicionar dados",
-            "sendAll": "Enviar tudo",            
+            "sendAll": "Enviar tudo",
             "removeData": "Remover dados",
             "estimatedFee": "Taxa estimada",
             "createContract": "Criar contratos",
             "provideGas": "Providenciar combustível",
-            "transactionSent": "Transação enviada",            
+            "transactionSent": "Transação enviada",
             "error": {
                 "emptyWallet": "A conta de origem está vaziaThe account you want to send from is empty.",
                 "notEnoughFunds": "Você não tem saldo suficiente nessa conta.",
@@ -299,6 +313,7 @@
             "buttons": {
                 "showContractInfo": "Mostrar informação do contrato",
                 "hideContractInfo": "Esconder informação do contrato",
+                "watchContractEvents": "Assistir a eventos do contrato",
                 "execute": "Executar",
                 "yes": "Sim"
             },

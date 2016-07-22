@@ -130,16 +130,18 @@ var formatOutput = function(val) {
 Template['elements_executeContract_constant'].onCreated(function(){
     var template = this;
 
+    // initialize our input data prior to the first call
+    TemplateVar.set('inputs', _.map(template.data.inputs, function(input) {
+        return Helpers.addInputValue([input], input, {})[0];
+    }));
+
     // call the contract functions when data changes and on new blocks
     this.autorun(function() {
         // make reactive to the latest block
         EthBlocks.latest;
 
-        // get args for the constant function
-        var args = TemplateVar.get('inputs') || [];
-
-        // add callback
-        args.push(function(e, r) {
+        // get args for the constant function and add callback
+        var args = TemplateVar.get('inputs').concat(function(e, r) {
             if(!e) {
                 var outputs = [];
                 // single return value
@@ -299,8 +301,17 @@ Template['elements_executeContract_function'].events({
                 // CONTRACT TX
                 if(contracts['ct_'+ selectedAccount._id]) {
 
+                    // Load the accounts owned by user and sort by balance
+                    var accounts = EthAccounts.find({name: {$exists: true}}, {sort: {name: 1}}).fetch();
+                    accounts.sort(Helpers.sortByBalance);
+
+                    // Looks for them among the wallet account owner
+                    var fromAccount = _.find(accounts, function(acc){
+                       return (selectedAccount.owners.indexOf(acc.address)>=0);
+                    })
+
                     contracts['ct_'+ selectedAccount._id].execute.sendTransaction(to || '', amount || '', data || '', {
-                        from: selectedAccount.owners[0],
+                        from: fromAccount.address,
                         gasPrice: gasPrice,
                         gas: estimatedGas
                     }, function(error, txHash){

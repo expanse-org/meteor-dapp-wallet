@@ -44,13 +44,16 @@ Template['elements_event_table'].helpers({
     @return {Object} The items cursor
     */
     'items': function(){
+
         var template = Template.instance(),
             items = [],
+            ids = this.ids || [],
             searchQuery = TemplateVar.get('search'),
             limit = TemplateVar.get('limit'),
             collection = Events,
-            selector = this.ids ? {_id: {$in: this.ids}} : {};
-
+            selector = {_id: {$in: ids.slice(Number((limit+50)*-1))}}; 
+            // slice(limit) prevents loading too many objects at once and slowing the machine
+        
         // if search
         if(searchQuery) {
             var pattern = new RegExp('^.*'+ searchQuery.replace(/ +/g,'.*') +'.*$','i');
@@ -90,7 +93,7 @@ Template['elements_event_table'].helpers({
         var template = Template.instance();
 
         template._properties.cursor.limit = null;
-        return (!TemplateVar.get('search') && template._properties.cursor.count() > TemplateVar.get('limit'));
+        return (!TemplateVar.get('search') && template._properties.cursor.count() >= TemplateVar.get('limit'));
     }
 });
 

@@ -50,9 +50,12 @@
 
 
 .dapp-content {
-    padding-bottom: @defaultPaddingVertical*2;
+    padding: @defaultPaddingVertical @defaultPaddingHorizontal*2.5 @defaultPaddingVertical*2;
+    max-width: none;
 
     .dapp-container {
+        max-width: none; 
+
         > h2 {
             margin-bottom: @gridHeight * 1;
         }
@@ -138,11 +141,23 @@ body {
     }
 }
 
+.drag-bar {
+    z-index: 31;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    pointer-events: none;
+    -webkit-app-region: drag; // necessary to drag the wallet window
+}
 
 .dapp-header {
+    padding-right: @gridWidth * 2.5;
+    padding-left: @gridWidth * 2.5;
     background-color: @colorWinBackgroundFocus;
+    -webkit-app-region: drag; // necessary to drag the wallet window
     .background-image(linear-gradient(to bottom,  @colorWinBackgroundFocus 50%, #ddd9d9 90%));
-    
 
     &.dapp-small {
         z-index: 30;
@@ -167,10 +182,16 @@ body {
                 display: none;
             }
         }
+
+        &.dapp-full-header + .dapp-flex-content {
+            margin-top: @gridHeight * 3.5;
+        }
     }
 
     &.dapp-full-header {
         padding-top: @gridHeight * 4.5;
+        padding-right: @gridWidth * 0.5;
+        padding-left: @gridWidth * 0.5;
     }
 
     nav ul a.active {
@@ -257,19 +278,22 @@ body {
     flex-flow: row wrap;
 
     .dapp-sticky-bar {
-        z-index: 25;
         position: fixed;
         top: floor(@gridHeight * -1);
         left: 0;
         right: 0;
         height: @gridHeight * 2;
-        padding: @gridHeight/2 @gridWidth;
+        padding: @gridHeight/2 @gridWidth * 2.5;
         background: @colorWhite;
-        .transition(top @animationSpeed);
-        // box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        z-index: -1;
+
+        .transition(top @animationSpeed, opacity @animationSpeed * 2);
 
         &.sticky {
             top: floor(@gridHeight * 2);
+            opacity: 1;
+            z-index: 25;
         }
 
         > .dapp-identicon {
@@ -278,7 +302,7 @@ body {
             width: floor(@gridWidth / 1.5);
             height: floor(@gridWidth / 1.5);
             box-shadow: inset rgba(255, 255, 255, 0.4) 0 1px 1px, inset rgba(0, 0, 0, 0.3) 0 -1px 2px;
-            left: @gridWidth;
+            left: @gridWidth * 2.5;
         }
 
         h1 {
@@ -289,7 +313,7 @@ body {
         
         .account-balance {
             position: absolute;
-            right: @gridWidth;
+            right: @gridWidth * 2;
             top: 7px;
             font-size: 1.2em;
             font-weight: 400;
@@ -311,8 +335,17 @@ body {
         }
 
         h2 {
+            //white-space: nowrap;
             span {
                padding-left: @gridWidth/6;
+            }
+            input {
+                border: none;
+                margin: 0;
+                background: none;
+                width: 440px;
+                color: inherit;
+                padding-left: @gridWidth/6;
             }
         }
 
@@ -354,6 +387,18 @@ body {
         flex: 100%;
         nav {
             float: right;
+        }
+    }
+
+    .accounts-transactions {
+        .watch-events-spinner .spinner-container {
+            position: relative;
+            height: 50px;
+
+            .spinner {
+                left: 3% !important;
+                top: 80% !important;
+            }
         }
     }
 
@@ -425,6 +470,11 @@ body {
     .account-balance {
         font-size: 1.6em;
         color: @colorTextSecondary;
+    }
+
+    input[type='checkbox'] {
+        float: left; 
+        margin-right: @defaultMargin/2;
     }
 }
 
@@ -699,10 +749,6 @@ body {
 
 
 .execute-contract {
-    input[type='checkbox'] {
-        float: left; 
-        margin-right: @defaultMargin/2;
-    }
 
     h4, dt {
         text-transform: lowercase;
@@ -759,7 +805,7 @@ body {
         }
         
         table {
-            max-width: @gridWidth * 16;
+            table-layout: fixed;
             
             tr:nth-child(odd) {
                 border-radius: 4px 4px 0 0;
@@ -773,6 +819,7 @@ body {
             td {
                 border-radius: 2px;
                 vertical-align: top;
+                word-wrap: break-word;
 
                 h3 {    
                     margin: 0;
@@ -782,8 +829,8 @@ body {
                     margin: 0;
                     dd {
                         margin-left: 0;
-                        max-width: 14 * @gridWidth;
                         margin-bottom: @gridHeight;
+                        word-wrap: break-word;
                     }
                 }    
             }
