@@ -26,7 +26,7 @@ Template['layout_header'].helpers({
     'goToSend': function() {
         FlowRouter.watchPathChange();
         var address = web3.toChecksumAddress(FlowRouter.getParam('address'));
-            
+
         return (address)
             ? FlowRouter.path('sendFrom', {from: address})
             : FlowRouter.path('send');
@@ -45,7 +45,7 @@ Template['layout_header'].helpers({
 
         // set total balance in Mist menu, of no pending confirmation is Present
         if(typeof mist !== 'undefined' && !PendingConfirmations.findOne({operation: {$exists: true}})) {
-            mist.menu.setBadge(ExpTools.formatBalance(balance, '0.00 a','expanse') + ' EXP');
+            mist.menu.setBadge(ExpTools.formatBalance(balance, '0.0 a','expanse') + ' EXP');
         }
 
         return balance;
@@ -65,9 +65,9 @@ Template['layout_header'].helpers({
     @method (timeSinceBlock)
     */
     'timeSinceBlock': function () {
-        
-        if (EthBlocks.latest.timestamp == 0 
-            || typeof EthBlocks.latest.timestamp == 'undefined')   
+
+        if (EthBlocks.latest.timestamp == 0
+            || typeof EthBlocks.latest.timestamp == 'undefined')
             return false;
 
         var timeSince = moment(EthBlocks.latest.timestamp, "X");
@@ -94,9 +94,9 @@ Template['layout_header'].helpers({
     @method (timeSinceBlockText)
     */
     'timeSinceBlockText': function () {
-        
-        if (EthBlocks.latest.timestamp == 0 
-            || typeof EthBlocks.latest.timestamp == 'undefined')   
+
+        if (EthBlocks.latest.timestamp == 0
+            || typeof EthBlocks.latest.timestamp == 'undefined')
             return TAPi18n.__('wallet.app.texts.waitingForBlocks');
 
         var timeSince = moment(EthBlocks.latest.timestamp, "X");
