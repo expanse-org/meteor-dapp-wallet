@@ -239,7 +239,7 @@ Creates filters for a wallet contract, to watch for deposits, pending confirmati
 */
 var setupContractFilters = function(newDocument, checkFromCreationBlock){
     var blockToCheckBack = (newDocument.checkpointBlock || 0) - ethereumConfig.rollBackBy;
-    
+
     if(checkFromCreationBlock || blockToCheckBack < 0)
         blockToCheckBack = newDocument.creationBlock;
 
@@ -350,7 +350,7 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
 
         var filter = contractInstance.allEvents({fromBlock: blockToCheckBack, toBlock: 'latest'});
         events.push(filter);
-        
+
         // get past logs, to set the new blockNumber
         var currentBlock = EthBlocks.latest.number;
         filter.get(function(error, logs) {
@@ -410,7 +410,7 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
                         Transactions.remove({_id: Helpers.makeId('tx', log.transactionHash)});
                         return;
                     }
-                    
+
                     Helpers.eventLogs(log.event +' for '+ newDocument.address +' arrived in block: #'+ log.blockNumber, log.args.value.toNumber());
 
                     var txExists = addTransaction(log, newDocument.address, log.args.to, log.args.value.toString(10));
@@ -440,71 +440,53 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
                 if(log.event === 'ConfirmationNeeded') {
                     Helpers.eventLogs('ConfirmationNeeded for '+ newDocument.address +' arrived in block: #'+ log.blockNumber, log.args.value.toNumber() +', Operation '+ log.args.operation);
 
-                    var block = web3.eth.getBlock(log.blockNumber, true, function(err, block){
+                    web3.eth.getBlock(log.blockNumber, true, function(err, block){
 
                         if(!err && block) {
                             var confirmationId = Helpers.makeId('pc', log.args.operation),
                                 accounts = Wallets.find({$or: [{address: log.address}, {address: log.args.to}]}).fetch(),
-                                pendingConf = PendingConfirmations.findOne(confirmationId),
-                                depositTx;
+                                pendingConf = PendingConfirmations.findOne(confirmationId);
+
 
                             // PREVENT SHOWING pending confirmations, of WATCH ONLY WALLETS
                             if(!(from = Wallets.findOne({address: log.address})) || !EthAccounts.findOne({address: {$in: from.owners}}))
                                 return;
 
-                            if(accounts[0] && accounts[0].transactions) {
-                                var txs = _.flatten(_.pluck(accounts, 'transactions'));
-                                depositTx = Transactions.findOne({_id: {$in: txs || []}, operation: log.args.operation});
-                            }
-
-
                             // add pending confirmation,
-                            // if not already present, OR transaction already went through
-                            if(depositTx) {
-                                PendingConfirmations.remove(confirmationId);
-                            
-                            } else {
-                                PendingConfirmations.upsert(confirmationId, {$set: {
-                                    confirmedOwners: pendingConf ? pendingConf.confirmedOwners : [],
-                                    initiator: log.args.initiator,
-                                    operation: log.args.operation,
-                                    value: log.args.value.toString(10),
-                                    to: log.args.to,
-                                    from: newDocument.address,
-                                    timestamp: block.timestamp,
-                                    blockNumber: log.blockNumber,
-                                    blockHash: log.blockHash,
-                                    transactionHash: log.transactionHash,
-                                    transactionIndex: log.transactionIndex,
-                                }});
+                            PendingConfirmations.upsert(confirmationId, {$set: {
+                                confirmedOwners: pendingConf ? pendingConf.confirmedOwners : [],
+                                initiator: log.args.initiator,
+                                operation: log.args.operation,
+                                value: log.args.value.toString(10),
+                                to: log.args.to,
+                                from: newDocument.address,
+                                timestamp: block.timestamp,
+                                blockNumber: log.blockNumber,
+                                blockHash: log.blockHash,
+                                transactionHash: log.transactionHash,
+                                transactionIndex: log.transactionIndex,
+                            }});
 
-                                // TODO: add back? done for the confirmation log already
-                                // delay a little to prevent race conditions
-                                // Tracker.afterFlush(function() {
-                                //     confirmOrRevoke(contractInstance, log);
-                                // });
-
-                                // NOTIFICATION
-                                if(pendingConf && !pendingConf.operation) {
-                                    Helpers.showNotification('wallet.transactions.notifications.pendingConfirmation', {
-                                        initiator: Helpers.getAccountNameByAddress(log.args.initiator),
-                                        to: Helpers.getAccountNameByAddress(log.args.to),
-                                        from: Helpers.getAccountNameByAddress(newDocument.address),
-                                        amount: ExpTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'expanse')
-                                    }, function() {
-                                        FlowRouter.go('/account/'+ newDocument.address);
-                                    });
-                                }
-
-
-                                // remove pending transactions, as they now have to be approved
-                                var extistingTxId = Helpers.makeId('tx', log.transactionHash);
-                                Meteor.setTimeout(function() {
-                                    Transactions.remove(extistingTxId);
-                                }, 500);
+                            // NOTIFICATION
+                            if(pendingConf && !pendingConf.operation) {
+                                Helpers.showNotification('wallet.transactions.notifications.pendingConfirmation', {
+                                    initiator: Helpers.getAccountNameByAddress(log.args.initiator),
+                                    to: Helpers.getAccountNameByAddress(log.args.to),
+                                    from: Helpers.getAccountNameByAddress(newDocument.address),
+                                    amount: EthTools.formatBalance(log.args.value, '0,0.00[000000] unit', 'ether')
+                                }, function() {
+                                    FlowRouter.go('/account/'+ newDocument.address);
+                                });
                             }
+
+
+                            // remove pending transactions, as they now have to be approved
+                            var extistingTxId = Helpers.makeId('tx', log.transactionHash);
+                            Meteor.setTimeout(function() {
+                                Transactions.remove(extistingTxId);
+                            }, 500);
                         }
-                        
+
                     });
                 }
                 if(log.event === 'OwnerAdded') {
@@ -523,13 +505,11 @@ var setupContractFilters = function(newDocument, checkFromCreationBlock){
                 if(log.event === 'Confirmation') {
                     Helpers.eventLogs('Operation confirmation for '+ newDocument.address +' arrived in block: #'+ log.blockNumber, log.args);
 
-                    // delay a little to prevent race conditions
                     confirmOrRevoke(contractInstance, log);
                 }
                 if(log.event === 'Revoke') {
                     Helpers.eventLogs('Operation revokation for '+ newDocument.address +' arrived in block: #'+ log.blockNumber, log.args);
 
-                    // delay a little to prevent race conditions
                     confirmOrRevoke(contractInstance, log);
                 }
             } else {
@@ -576,7 +556,7 @@ observeWallets = function(){
                         web3.eth.getCode(newDocument.address, function(e, code){
                             if(!e) {
                                 if(code.length > 2) {
-                                    updateContractData(newDocument);                                
+                                    updateContractData(newDocument);
 
                                 // check for wallet data
                                 } else {
@@ -706,10 +686,10 @@ observeWallets = function(){
                                         closeable: false
                                     });
                                 }
-                                
+
                             } else {
                                 console.log('Error while deploying wallet', error);
-                                
+
                                 GlobalNotification.error({
                                     content: error.message,
                                     duration: 8
