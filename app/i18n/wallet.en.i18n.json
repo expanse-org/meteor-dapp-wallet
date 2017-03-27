@@ -5,13 +5,14 @@
             "low": "Cheaper"
         },
         "checksumAlert":"This address looks valid, but it doesn't have some security features that will protect you against typos, so double check you have the right one. If provided, check if the security icon matches.",
-        "identiconHelper": "This is a security icon, if there's any change on the address the resulting icon should be a completelly different one"
+        "identiconHelper": "This is a security icon, if there's any change on the address the resulting icon should be a completely different one"
     },
     "wallet": {
         "app": {
             "buttons": {
                 "wallet": "Wallets",
                 "send": "Send",
+                "contracts": "Contracts",
                 "deploy": "Deploy",
                 "tokens": "Tokens",
                 "receive": "Receive",
@@ -22,21 +23,31 @@
             "texts": {
                 "note": "Note",
                 "balance": "Balance",
-                "connectionErrorMist": "Unable to connect. Please start geth using:<br><br><small><code>__node__</code><br><br>Make sure you set your IPC path to the default one, when using a different <code>datadir</code>, e.g.<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Ethereum/geth.ipc</code><br>or<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.ethereum/geth.ipc</code>. <br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
-                "connectionErrorBrowser": "Unable to connect. Please start geth with the following options:<br><br><small><code>__node__</code><br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorMist": "Unable to connect. Please start gexp using:<br><br><small><code>__node__</code><br><br>Make sure you set your IPC path to the default one, when using a different <code>datadir</code>, e.g.<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Expanse/gexp.ipc</code><br>or<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.expanse/gexp.ipc</code>. <br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorBrowser": "Unable to connect. Please start gexp with the following options:<br><br><small><code>__node__</code><br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "pendingConfirmationsBadge": "Pending Confirmation!",
                 "nodeSyncing": "__blockDiff__ blocks left",
                 "blockReceived": "New Block Received",
                 "timeSinceBlock": "since last block",
                 "peers": "peers",
-                "testnetExplain": "You are on a testnet, DO NOT SEND any real ether to these addresses",
+                "waitingForBlocks": "Waiting for blocks..",
+                "testnetExplain": "You are on a testnet, DO NOT SEND any real exp to these addresses",
                 "noAccounts": {
                     "title": "You have no accounts yet",
                     "text": "You need to create at least one account with a strong password."
                 }
             },
             "error": {
-                "wrongChain": "You seem on a different chain, please restart the Ethereum Wallet App!"
+                "wrongChain": "You seem on a different chain, please restart the Expanse Wallet App!"
+            },
+            "warnings": {
+                "txOriginVulnerabilityWallet": "This smart contract wallet has outdated code and is subject to phishing attacks. ",
+                "txOriginVulnerabilityCallToAction": "Upgrade your contract now and transfer all your funds to your new one.",
+                "txOriginVulnerabilityAccount": "This account is an owner of a vulnerable wallet contract and using this account on malicious contracts can endanger your wallets funds. Upgrade your wallet before doing any transactions with this account.",
+                "txOriginVulnerabilityPopup": "We found vulnerable wallets! Make sure to deploy new wallets and move the funds!",
+                "checkThisNow": "Show vulnerable wallet",
+                "checkThisLater": "Later",
+                "learnMore": "Learn more about this vulnerability"
             }
         },
         "modals": {
@@ -44,7 +55,7 @@
                 "title": "Select an account"
             },
             "testnetWallet": {
-                "walletNeedsDeployment": "You seem to be on a testnet.<br><br>There is no original wallet contract code found, we need to deploy one, which can be used by the wallet contract stub contracts, from your address: <br><br><small><code>__account__</code></small><br><br><em>Please make sure this address has at least 1 ether!</em>",
+                "walletNeedsDeployment": "You seem to be on a testnet.<br><br>There is no original wallet contract code found, we need to deploy one, which can be used by the wallet contract stub contracts, from your address: <br><br><small><code>__account__</code></small><br><br><em>Please make sure this address has at least 1 exp!</em>",
                 "testnetWalletDeployed": "Original wallet contract deployed!<br>An original wallet contract was deployed on the address:<br><br><small><code>__address__</code></small>."
             },
             "addToken": {
@@ -68,35 +79,52 @@
             "defaultName": "Unnamed",
             "creating": "Creating",
             "importing": "Importing",
-            "accountNote": "Accounts can't display incoming transactions, but hold and send ether. To see incoming transactions <a href=\"/account/new\">create a wallet contract</a> to store ether.",
-            "walletNote": "Most exchanges don't support receiving ether from a contract wallet yet. Be sure to move the money to an account address first!",
+            "accountNote": "Accounts can't display incoming transactions, but hold and send exp. To see incoming transactions <a href=\"/account/new\">create a wallet contract</a> to store exp.",
+            "walletNote": "Most exchanges don't support receiving exp from a contract wallet yet. Be sure to move the money to an account address first!",
             "addressCopiedToClipboard": "Copied to clipboard",
+            "addressNotCopiedToClipboard": "Error copying address to clipboard. Please try again.",
             "qrCodeLabel": "Point a compatible mobile app to this code",
             "dailyLimit": "Daily limit",
             "dailyLimitRemaining": "remaining today",
             "requiredSignatures": "Required signatures",
             "owners": "Owners",
             "walletsDescription": "These are contracts that are stored on the blockchain and can hold and secure ether. They can have multiple accounts as owners and keep a full log of all transactions.",
-            "walletsDescriptionNotEnoughFunds": "Once you have more than 1 ether you can create a more sophisticated contracts. Wallets are one type of basic smart contract, that allows your funds to be controlled by multiple accounts and have an optional daily limit on withdrawals, to increase security.  To create your own custom contracts go to the <em> Contracts </em> tab.",
-            "accountsDescription": "Accounts are password protected keys that can hold ether, secure ethereum-based tokens or coins and control contracts. Accounts can't display incoming transactions.",
+            "walletsDescriptionNotEnoughFunds": "Once you have more than 1 ether you can create more sophisticated contracts. Wallets are one type of basic smart contract, that allows your funds to be controlled by multiple accounts and have an optional daily limit on withdrawals, to increase security.  To create your own custom contracts go to the <em>Contracts</em> tab.",
+            "accountsDescription": "Accounts are password protected keys that can hold ether, secure Expanse-based tokens or coins and control contracts. Accounts can't display incoming transactions.",
             "buttons": {
-                "deposit": "Deposit Ether",
+                "deposit": "Deposit Exp",
                 "depositBitcoin": "Deposit using Bitcoin",
                 "copyAddress": "Copy address",
                 "scanQRCode": "Show QR-Code",
                 "showInterface": "Show Interface"
             },
             "modal": {
-                "deleteText": "Do you really want to delete this wallet contract? The account will still exist on the blockchain but <br>if you delete the address, you will not be able to find and will lose access to the funds deposited<br><br> Type the name of the wallet contract to confirm the deletion.",
+                "deleteText": "Do you really want to delete this wallet contract? The account will still exist on the blockchain but <br>if you delete the address, you will not be able to find and will lose access to the funds deposited<br><br> Type \"delete\" confirm the deletion.",
                 "backupWallet": {
                     "title": "Backup your wallet contract address!",
                     "description": "Make sure to write down the wallet contract address:"
-                }
+                },
+                "copyAddressWarning": "<strong>Warning:</strong> you are on the Test Network. Be careful not to transfer real funds to this account.",
+                "buttonOk": "Copy anyway",
+                "buttonCancel": "Nevermind.."
             }
+        },
+        "events": {
+            "eventInfoTitle": "Event",
+            "latest": "Latest events",
+            "filter": "Filter events",
+            "transactionHash": "Transaction hash",
+            "block": "Block",
+            "originContract": "Origin contract",
+            "logIndex": "Log index",
+            "transactionIndex": "Transaction index",
+            "returnValues": "Return values",
+            "eventName": "Event name"
         },
         "transactions": {
             "transactionInfoTitle": "Transaction",
             "latest": "Latest transactions",
+            "block": "Block",
             "pendingConfirmations": "Confirmation needed",
             "none": "No transactions yet",
             "time": "Time",
@@ -105,7 +133,7 @@
             "amount": "Amount",
             "gasPrice": "Gas price",
             "perMillionGas": " PER MILLION GAS",
-            "gasUsed": "Gas used", 
+            "gasUsed": "Gas used",
             "feePaid": "Fee paid",
             "data": "Send data",
             "deployedData": "Deployed data",
@@ -124,7 +152,7 @@
             },
             "error": {
                 "noDataDeployed": "No data is deployed on the contract address!",
-                "outOfGas": "The transaction from __from__ to __to__ couldn't be successfully executed."  
+                "outOfGas": "The transaction from __from__ to __to__ couldn't be successfully executed."
             },
             "types": {
                 "executeContract": "Contract Execution",
@@ -146,8 +174,8 @@
                     "text": "You received __amount__ on __to__ from __from__."
                 },
                 "outgoingTransaction": {
-                    "title": "Payment send",
-                    "text": "You send __amount__ from __from__ to __to__."    
+                    "title": "Payment sent",
+                    "text": "You sent __amount__ from __from__ to __to__."
                 },
                 "pendingConfirmation": {
                     "title": "Confirmation needed",
@@ -175,7 +203,7 @@
                     "description": "A contract controlled by multiple accounts",
                     "text1": "This is a joint account controlled by",
                     "text2": "owners. You can send up to",
-                    "text3": "ether per day.",
+                    "text3": "exp per day.",
                     "text4": "Any transaction over that daily limit requires the confirmation of",
                     "text5": "owners.",
                     "accountOwnersTitle": "Account owners",
@@ -192,7 +220,7 @@
             },
             "error": {
                 "emptySignees": "You didn't provided all owners.",
-                "alreadyExists": "Account already exists.",
+                "alreadyExists": "Wallet contract already exists.",
                 "stubHasNoOrigWalletAddress": "Your stub contract has no original account address set, please restart your App!",
                 "contractsCantBeOwners": "Contracts can't be owners.",
                 "checkOwnerAddress": "Please change the contract address __address__ to an account."
@@ -209,6 +237,9 @@
             "sendFunds": "Send funds",
             "deployContract": "Deploy contract",
             "data": "Data",
+            "moreOptions": "More Options",
+            "showMoreOptions": "Show More Options",
+            "showLessOptions": "Show Less Options",
             "fee": "Select Fee",
             "feeLow": "Cheaper",
             "feeHigh": "Faster",
@@ -218,6 +249,7 @@
             "estimatedFee": "Estimated fee",
             "createContract": "Create contract",
             "provideGas": "Provide gas",
+            "transactionSent": "Transaction sent",
             "error": {
                 "emptyWallet": "The account you want to send from is empty.",
                 "notEnoughFunds": "You don't have enough funds in the account.",
@@ -225,18 +257,18 @@
                 "noAmount": "You didn't specify an amount to send."
             },
             "texts": {
-                "ownerPaysGas": "Gas is payed by the owner of the wallet contract",
+                "ownerPaysGas": "Gas is paid by the owner of the wallet contract",
                 "sendAmount": "You want to send <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "You want to send <strong>__amount__</strong> in ether, using exchange rates from <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Which is currently an equivalent of <strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "You want to send <strong>__amount__</strong> in exp, using exchange rates from <a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>Which is currently an equivalent of <strong>__etherAmount__</strong>.",
                 "sendToken": "You want to send <strong>__amount__ __symbol__</strong> of <strong> __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">This amount is over the remaining daily limit of __limit__ (of __total__ per day), so you need __count__ other account to confirm.</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">This amount is over the remaining daily limit of __limit__ (of __total__ per day), so you need __count__ other accounts to confirm.</p>",
                 "underDailyLimit": "<p class=\"under-daily\">This amount is under the remaining daily limit of __limit__ (of __total__ per day), means it will send immediately.</p>",
                 "sendFee": "This is the most amount of money that might be used to process this transaction. Your transaction will be mined <strong>__timetext__</strong>.",
                 "noCodeInRecipient": "The recipient account is not a contract, so you can't execute anything. <strong> Put a contract address on the 'TO' field. </strong>",
-                "addData": "You can add extra data to send along with your transaction. If you leave the \"to\" field empty it will try to deploy a contract from your data.",
+                "addData": "You can add extra data to send along with your transaction. If you don't know what this is then <strong>don't touch it or bad things may happen</strong>.",
                 "dataNotExecutable": "The data seems not to be executabe, that means this transaction will use all the gas you provide.",
-                "cantEstimateGas": "We can't estimate your gas usage properly, as you need at least 1 ether in your account.",
+                "cantEstimateGas": "We can't estimate your gas usage properly, as you need at least 1 exp in your account.",
                 "estimatedGas": "Estimated required gas",
                 "timeTexts": {
                     "0": "in a few minutes or more",
@@ -252,7 +284,7 @@
             "title": "Custom <strong>Tokens</strong>",
             "subTitle": "Added tokens",
             "admin": "__name__ (admin page)",
-            "description": "Tokens are currencies and other fungibles built on the Ethereum platform. In order for accounts to watch for tokens and send them, you have to add their address to this list. You can create your own token by simply modifiying <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">this example of a custom token contract</a> or learning more about <a href=\"https://www.ethereum.org/token#the-code\" target=\"_blank\">Ethereum Tokens</a>.",
+            "description": "Tokens are currencies and other fungibles built on the Expanse platform. In order for accounts to watch for tokens and send them, you have to add their address to this list. You can create your own token by simply modifying <a href=\"http://Expanse.github.io/browser-solidity/?gist=319854ee93812ef304ec2af0317b3c74\" target=\"_blank\">this example of a custom token contract</a> or learning more about <a href=\"https://www.Expanse.org/token#the-code\" target=\"_blank\">Expanse Tokens</a>.",
             "deleteToken": "Do you want to remove the token <strong>__token__</strong> from your list?",
             "addedToken": "Added __token__ to your watch list",
             "editedToken": "Edited token __token__",
@@ -280,17 +312,18 @@
             "writeToContract": "Write to contract",
             "pickContract": "Pick a contract",
             "pickFunction": "Pick a function",
-            "noContract": "<p>Put the source of the contract you want here. You can find many examples of contracts at the <a href=\"http://ethereum.org\" target=\"_blank\">ethereum.org</a>: </p> <ul><li><a href=\"http://ethereum.org/token\" target=\"_blank\">Build a token</a></li><li><a href=\"http://ethereum.org/crowdsale\" target=\"_blank\">Start a crowdsale</a></li><li><a href=\"http://ethereum.org/dao\" target=\"_blank\">Create a blockchain organization</a></li></ul>",
+            "noContract": "<p>Put the source of the contract you want here. You can find many examples of contracts at the <a href=\"http://expanse.tech\" target=\"_blank\">expanse.tech</a>: </p> <ul><li><a href=\"http://expanse.tech/token#the-code\" target=\"_blank\">Build a token</a></li><li><a href=\"http://expanse.tech/crowdsale#the-code\" target=\"_blank\">Start a crowdsale</a></li><li><a href=\"http://expanse.tech/dao#the-code\" target=\"_blank\">Create a blockchain organization</a></li></ul>",
             "buttons": {
                 "showContractInfo": "Show contract info",
                 "hideContractInfo": "Hide contract info",
+                "watchContractEvents": "Watch contract events",
                 "execute": "Execute",
                 "yes": "Yes"
             },
             "error": {
                 "compile": "Could not compile source code.",
                 "noDataProvided": "No Data found: select a contract from the 'select contract' menu",
-                "invalidAddress": "Contract not added, invalid address.",
+                "invalidAddress": "This is not a valid address.",
                 "jsonInterfaceParseError": "Couldn't parse the JSON Interface."
             }
         }

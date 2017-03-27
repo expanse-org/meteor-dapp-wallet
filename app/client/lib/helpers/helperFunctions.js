@@ -13,6 +13,31 @@ The Helpers class containing helper functions
 Helpers = {};
 
 /**
+Get the default contract example
+
+@method getDefaultContractExample
+**/
+Helpers.getDefaultContractExample = function(withoutPragma) {
+    const source = 'contract MyContract {\n    /* Constructor */\n    function MyContract() {\n\n    }\n}';
+
+    if (withoutPragma) {
+        return source;
+    } else {
+        var solcVersion;
+
+        // Keep this for now as the Mist-API object will only be availabe from Mist version >= 0.8.9 
+        // so that older versions that will query code from wallet.ethereum.org won't use broken example code.
+        if (typeof mist !== 'undefined' && mist.solidity && mist.solidity.version) {
+            solcVersion = mist.solidity.version;
+        }
+        else {
+            solcVersion = '0.4.6';
+        }
+        return 'pragma solidity ' + solcVersion + ';\n\n' + source;
+    }
+}
+
+/**
 Reruns functions reactively, based on an interval. Use it like so:
 
     Helpers.rerun['10s'].tick();
@@ -25,6 +50,7 @@ Helpers.rerun = {
     '1s': new ReactiveTimer(1)
 };
 
+
 /**
 Sort method for accounts and wallets to sort by balance
 
@@ -32,6 +58,27 @@ Sort method for accounts and wallets to sort by balance
 **/
 Helpers.sortByBalance = function(a, b){
     return !b.disabled && new BigNumber(b.balance, 10).gt(new BigNumber(a.balance, 10)) ? 1 : -1;
+};
+
+
+/**
+Return an account you own, from a list of accounts
+
+@method getOwnedAccountFrom
+@param {Array} accountList array of account addresses
+@return {Mixed} the account address of an account owned
+**/
+Helpers.getOwnedAccountFrom = function(accountList){
+    // Load the accounts owned by user and sort by balance
+    var accounts = EthAccounts.find({}, {sort: {balance: 1}}).fetch();
+    accounts.sort(Helpers.sortByBalance);
+
+    // Looks for them among the wallet account owner
+    var fromAccount = _.find(accounts, function(acc){
+       return (accountList.indexOf(acc.address)>=0);
+    })
+
+    return fromAccount ? fromAccount.address : '';
 };
 
 /**
@@ -78,7 +125,7 @@ Helpers.formatNumberByDecimals = function(number, decimals){
         numberFormat += "0";
     }
 
-    return EthTools.formatNumber(new BigNumber(number, 10).dividedBy(Math.pow(10, decimals)), numberFormat);
+    return ExpTools.formatNumber(new BigNumber(number, 10).dividedBy(Math.pow(10, decimals)), numberFormat);
 };
 
 /**
@@ -87,9 +134,7 @@ Display logs in the console for events.
 @method eventLogs
 */
 Helpers.eventLogs = function(){
-    var args = arguments;
-    Array.prototype.unshift.call(args, 'EVENT LOG: ');
-    console.log.apply(console, args);
+    console.log('EVENT LOG: ', arguments);
 }
 
 /**
@@ -180,7 +225,9 @@ Gets the docuement matching the given addess from the EthAccounts or Wallets col
 @param {String} name or address
 */
 Helpers.getAccountNameByAddress = function(address) {
-    var doc = Helpers.getAccountByAddress(address.toLowerCase());
+    if (typeof address != 'undefined')
+        var doc =  Helpers.getAccountByAddress(address.toLowerCase());
+    
     return doc ? doc.name : address; 
 };
 
@@ -257,7 +304,7 @@ Helpers.formatTransactionBalance = function(value, exchangeRates, unit) {
     if(unit instanceof Spacebars.kw)
         unit = null;
 
-    var unit = unit || EthTools.getUnit(),
+    var unit = unit || ExpTools.getUnit(),
         format = '0,0.00';
 
     if((unit === 'usd' || unit === 'eur' || unit === 'btc') &&
@@ -265,11 +312,13 @@ Helpers.formatTransactionBalance = function(value, exchangeRates, unit) {
 
         if(unit === 'btc')
             format += '[000000]';
-
+        else 
+            format += '[0]';
+        
         var price = new BigNumber(String(web3.fromWei(value, 'ether')), 10).times(exchangeRates[unit].price);
-        return EthTools.formatNumber(price, format) + ' '+ unit.toUpperCase();
+        return ExpTools.formatNumber(price, format) + ' '+ unit.toUpperCase();
     } else {
-        return EthTools.formatBalance(value, format + '[0000000000000000] UNIT');
+        return ExpTools.formatBalance(value, format + '[0000000000000000] UNIT');
     }
 };
 
@@ -283,8 +332,10 @@ Formats an input and prepares it to be a template
 @param {object} input           The input object, out of an ABI
 @return {object} input          The input object with added variables to make it into a template
 **/
-Helpers.createTemplateDataFromInput = function (input){
+Helpers.createTemplateDataFromInput = function (input, key){
+    input = _.clone(input);
 
+    input.index = key;
     input.typeShort = input.type.match(/[a-z]+/i);
     input.typeShort = input.typeShort[0];
     input.bits = input.type.replace(input.typeShort, '');
@@ -322,7 +373,8 @@ Helpers.addInputValue = function (inputs, currentInput, formField){
             var value = _.isUndefined(input.value) ? '' : input.value;
 
             if(currentInput.name === input.name &&
-               currentInput.type === input.type) {
+               currentInput.type === input.type && 
+               currentInput.index === input.index ) {
 
                 if(input.type.indexOf('[') !== -1) {
                     try {
@@ -349,4 +401,34 @@ Helpers.addInputValue = function (inputs, currentInput, formField){
 
             return value;
         }) || [];
+};
+
+/**
+Takes a camelcase and shows it with spaces
+
+@method toSentence
+@param {string} camelCase    A name in CamelCase or snake_case format
+@return {string} sentence    The same name, sanitized, with spaces
+**/
+Helpers.toSentence = function (inputString, noHTML) {
+    if (typeof inputString == 'undefined') 
+      return false;
+    else {
+    	inputString = inputString.replace(/[^a-zA-Z0-9_]/g, '');
+      if (noHTML === true) // only consider explicit true
+        return inputString.replace(/([A-Z]+|[0-9]+)/g, ' $1').trim();
+      else 
+        return inputString.replace(/([A-Z]+|[0-9]+)/g, ' $1').trim().replace(/([\_])/g, '<span class="dapp-punctuation">$1</span>');
+    }
+}
+
+
+/**
+Returns true if Main is the current network.
+
+@method isOnMainNetwork
+@return {Bool} 
+**/
+Helpers.isOnMainNetwork = function () {
+    return Session.get('network') == 'main';
 };

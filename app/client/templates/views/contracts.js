@@ -22,7 +22,10 @@ var addCustomContract = function(e) {
     var address = $('.modals-add-custom-contract input[name="address"]').hasClass('dapp-error')
             ? ''
             : $('.modals-add-custom-contract input[name="address"]').val(),
-        name = $('.modals-add-custom-contract input.name').val();
+        name = $('.modals-add-custom-contract input.name').val() || TAPi18n.__('wallet.accounts.defaultName');
+
+    address = address.toLowerCase();
+
 
     try {
         jsonInterface = JSON.parse($('.modals-add-custom-contract textarea.jsonInterface').val());
@@ -36,7 +39,15 @@ var addCustomContract = function(e) {
     }
 
     if(web3.isAddress(address)) {
-        address = address.toLowerCase();
+        // chech if contract already exists as wallet contract
+        if(Wallets.findOne({address: address})) {
+            GlobalNotification.warning({
+            content: TAPi18n.__('wallet.newWallet.error.alreadyExists'),
+            duration: 2
+            });
+
+            return false;
+        }
 
         CustomContracts.upsert({address: address}, {$set: {
             address: address,
@@ -73,6 +84,7 @@ var addToken = function(e) {
         symbol = $('.modals-add-token input.symbol').val(),
         decimals = $('.modals-add-token input.decimals').val();
 
+    address = address.toLowerCase();
 
     tokenId = Helpers.makeId('token', address);
 
@@ -81,8 +93,6 @@ var addToken = function(e) {
         TAPi18n.__('wallet.tokens.addedToken', {token: name}) ;
 
     if(web3.isAddress(address)) {
-        address = address.toLowerCase();
-
         Tokens.upsert(tokenId, {$set: {
             address: address,
             name: name,
@@ -137,7 +147,7 @@ Template['views_contracts'].events({
     'click .add-contract': function(){
 
         // Open a modal 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             template: 'views_modals_addCustomContract',
             ok: addCustomContract,
             cancel: true
@@ -154,7 +164,7 @@ Template['views_contracts'].events({
         e.preventDefault();
 
         // Open a modal 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             template: 'views_modals_addToken',
             ok: addToken,
             cancel: true
@@ -171,7 +181,7 @@ Template['views_contracts'].events({
         e.preventDefault();
 
         // Open a modal 
-        EthElements.Modal.question({
+        ExpElements.Modal.question({
             template: 'views_modals_addToken',
             data: this,
             ok: addToken.bind(this),

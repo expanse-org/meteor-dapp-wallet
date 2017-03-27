@@ -28,19 +28,67 @@ Check if in mist
 @method (isMist)
 **/
 Template.registerHelper('isMist', function(){
-    return typeof mist !== 'undefined';
+    return (typeof mist !== 'undefined');
 });
 
 /**
-Check if currenct unit is an ether unit
+Check if in mist and in mist mode
+
+@method (isMistMode)
+**/
+Template.registerHelper('isMistMode', function(){
+    return (typeof mist !== 'undefined' && mist.mode === 'mist') ||    // old mist api <= 0.8.7
+           (typeof mistMode !== 'undefined' && mistMode === 'mist');   // new mist api >= 0.8.8
+});
+
+/**
+Check if currenct unit is an expanse unit
 
 @method (isEtherUnit)
 **/
 Template.registerHelper('isEtherUnit', function(){
-    var unit = EthTools.getUnit();
+    var unit = ExpTools.getUnit();
     return !(unit === 'usd' || unit === 'eur' || unit === 'btc');
 });
 
+
+/**
+Check if wallet has vulnerabilities
+
+@method (isVulnerable)
+@param {String} address and address of a wallet/account
+**/
+Template.registerHelper('isVulnerable', function(address){
+    var account = _.isString(address) ? Helpers.getAccountByAddress(address): this;
+
+    if(!account)
+        return;
+
+    // check if is wallet and is vulnerable
+    if(_.find(account.vulnerabilities || [], function(vul){
+        return vul;
+    })) {
+        return account;
+    }
+
+    // check if is owner account and is vulnerable
+    var wallets = _.map(Wallets.find({vulnerabilities: {$exists: true}}).fetch(), function(wal){
+        return (!!_.find(wal.vulnerabilities || [], function(vul){
+            return vul;
+        }))
+            ? wal : false;
+    });
+    var wallet = _.find(wallets, function(wal){
+        return _.contains(wal.owners, account.address);
+    })
+
+    if(wallet) {
+        // add vulnerabilities to account
+        account.vulnerabilities = wallet.vulnerabilities;
+        return account;
+    } else 
+        return false;
+});
 
 /**
 Return the current unit
@@ -48,7 +96,7 @@ Return the current unit
 @method (unit)
 **/
 Template.registerHelper('unit', function(){
-    return EthTools.getUnit();
+    return ExpTools.getUnit();
 });
 
 /**
@@ -65,10 +113,12 @@ Returns a list of accounts and wallets sorted by balance
 
 @method (latestBlock)
 **/
-Template.registerHelper('selectAccounts', function(){
-    var accounts = EthAccounts.find({}, {sort: {name: 1}}).fetch();
-    accounts = _.union(Wallets.find({owners: {$in: _.pluck(accounts, 'address')}, address: {$exists: true}}, {sort: {name: 1}}).fetch(), accounts);
-    accounts.sort(Helpers.sortByBalance);
+Template.registerHelper('selectAccounts', function(hideWallets){
+    var accounts = EthAccounts.find({balance:{$ne:"0"}}, {sort: {balance: 1}}).fetch();
+    
+    if(hideWallets !== true)
+        accounts = _.union(Wallets.find({owners: {$in: _.pluck(EthAccounts.find().fetch(), 'address')}, address: {$exists: true}}, {sort: {name: 1}}).fetch(), accounts);
+
     return accounts;
 });
 
@@ -142,7 +192,7 @@ Template.registerHelper('formatTime', Helpers.formatTime);
 /**
 Formats a given transactions balance
 
-    {{formatTransactionBalance value exchangeRates "ether"}}
+    {{formatTransactionBalance value exchangeRates "expanse"}}
 
 @method formatTransactionBalance
 @param {String} value  the value to format
@@ -160,5 +210,18 @@ Formats address to a CaseChecksum
 @param {String} address             The address
 @return {String} checksumAddress    The returned, checksummed address
 **/
-Template.registerHelper('toChecksumAddress', web3.toChecksumAddress);
+Template.registerHelper('toChecksumAddress', function(address){
+    return _.isString(address) ? web3.toChecksumAddress(address) : '';
+});
+
+
+
+/** 
+Takes a camelcase and shows it with spaces
+
+@method toSentence
+@param {string} camelCase    A name in CamelCase or snake_case format
+@return {string} sentence    The same name with spaces
+**/
+Template.registerHelper('toSentence', Helpers.toSentence);
 

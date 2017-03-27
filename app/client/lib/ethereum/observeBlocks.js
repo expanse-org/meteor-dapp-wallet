@@ -52,30 +52,27 @@ updateBalances = function() {
 
     
     // UPDATE TOKEN BALANCES
-    var walletsAndAccounts = EthAccounts.find().fetch().concat(Wallets.find().fetch(), CustomContracts.find().fetch());
+    var walletsContractsAndAccounts = EthAccounts.find().fetch().concat(walletsAndContracts);
 
     _.each(Tokens.find().fetch(), function(token){
         if(!token.address)
             return;
 
+        var tokenInstance = TokenContract.at(token.address);
 
-        var tokenInstance = TokenContract.at(token.address),
-            totalBalance = new BigNumber(0);
-        
         // go through all existing accounts, for each token
-        _.each(walletsAndAccounts, function(account){
+        _.each(walletsContractsAndAccounts, function(account){
             tokenInstance.balanceOf(account.address, function(e, balance){
-                var tokenID = Helpers.makeId('token', token.address);
-                var currentBalance = Tokens.findOne(tokenID).balances ? Tokens.findOne(tokenID).balances[account._id] : 0;
+                var currentBalance = (token && token.balances) ? token.balances[account._id] : 0;
 
                 if(!e && balance.toString(10) !== currentBalance){
                     var set = {};
                     if (balance > 0) {
                         set['balances.'+ account._id] = balance.toString(10);
-                        Tokens.update(tokenID, {$set: set});
+                        Tokens.update(token._id, {$set: set});
                     } else if (currentBalance){
                         set['balances.'+ account._id] = '';
-                        Tokens.update(tokenID, {$unset: set});
+                        Tokens.update(token._id, {$unset: set});
                     }
                     
                 }
@@ -91,7 +88,6 @@ Observe the latest blocks
 @method observeLatestBlocks
 */
 observeLatestBlocks = function(){
-
     // update balances on start 
     updateBalances();
 

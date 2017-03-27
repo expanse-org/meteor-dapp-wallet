@@ -17,7 +17,7 @@ var setupContractFilters = function(newDocument){
 
     var blockToCheckBack = (newDocument.checkpointBlock || 0) - ethereumConfig.rollBackBy;
 
-    // TODO change to 0, when new geth is out!!!!!
+    // TODO change to 0, when new gexp is out!!!!!
     if(blockToCheckBack < 400000)
         blockToCheckBack = 400000;
 
@@ -33,7 +33,7 @@ var setupContractFilters = function(newDocument){
     });
 
     // SETUP FILTERS
-    Helpers.eventLogs('Checking Token Transfers for '+ contractInstance.address +' (_id: '+ newDocument._id +') from block #', blockToCheckBack);
+    // Helpers.eventLogs('Checking Token Transfers for '+ contractInstance.address +' (_id: '+ newDocument._id +') from block #', blockToCheckBack);
 
 
     var filter = contractInstance.allEvents({fromBlock: blockToCheckBack, toBlock: 'latest'});
@@ -52,7 +52,7 @@ var setupContractFilters = function(newDocument){
 
     filter.watch(function(error, log){
         if(!error) {
-            Helpers.eventLogs(log);
+            // Helpers.eventLogs(log);
 
             if(EthBlocks.latest.number && log.blockNumber > EthBlocks.latest.number) {
                 // update last checkpoint block
@@ -83,7 +83,7 @@ var setupContractFilters = function(newDocument){
                     }, function() {
 
                         // on click show tx info
-                        EthElements.Modal.show({
+                        ExpElements.Modal.show({
                             template: 'views_modals_transactionInfo',
                             data: {
                                 _id: txId

@@ -56,10 +56,12 @@ Connects to a node and setup all the filters for the accounts.
 */
 connectToNode = function(){
 
+    console.time('startNode')
     console.log('Connect to node...');
 
     EthAccounts.init();
     EthBlocks.init();
+    EthTools.ticker.start({extraParams: (typeof mist !== 'undefined') ? 'Mist-'+ mist.version : ''});
 
     if (EthAccounts.find().count() > 0) {
         checkForOriginalWallet();
@@ -85,12 +87,15 @@ connectToNode = function(){
 
     observeTransactions();
 
+    observeEvents();
+
     observeTokens();
 
     observePendingConfirmations();
 
     observeCustomContracts();
 
+    console.timeEnd('startNode')
 };
 
 /**

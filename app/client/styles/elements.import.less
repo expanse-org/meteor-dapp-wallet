@@ -58,10 +58,9 @@ span.address {
     margin-bottom: @defaultMargin;
     .box-sizing(border-box);
     border: 0;
-    font: 100 16px 'Source Sans Pro', 'Helvetica Neue', arial, sans-serif;
 
     // ANIMATION
-    .transition(background-color @animationSpeed*4, -webkit-filter @animationSpeed*20);
+    .transition(background-color @animationSpeed*4, opacity @animationSpeed);
 
     &:active {
         border: 0;
@@ -71,10 +70,9 @@ span.address {
         background-color: fadeout( #ffc107, 20%);
     }
 
-    &.disabled,
+    &.disabled:not(:hover),
     &.creating {
         .opacity(0.4);
-        pointer-events: none;
     }
     &.disabled {
         .filter(grayscale(100%));
@@ -87,6 +85,11 @@ span.address {
             margin-top: 0;
             text-align: left;
         }
+    }
+
+    &.creating { 
+        pointer-events: none;
+        cursor: default;
     }
 
     &:last-child {
@@ -250,7 +253,6 @@ span.address {
         }
     }
 }
-
 
 .select-token {
     .dapp-vertical-menu;
@@ -521,5 +523,71 @@ table {
             }
         }
     }
-
 }
+
+.account-page-notification {
+    .transition(opacity @animationSpeed * 2);
+
+    .row {
+        text-align: center;
+        background: @colorError;
+        padding: @defaultPaddingHorizontal;
+        font-size: 120%;
+
+        a {
+            color: @colorWhite;
+        } 
+
+        &:hover {
+            background: lighten(@colorError, 10%);
+        }       
+    }
+  
+    a.learn-more-link {
+        display: block;
+        padding-top: @gridHeight;
+        color: @colorError;
+        text-align: center;
+        font-weight: 400;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }  
+}
+
+.sticky + div .account-page-notification {
+    opacity: 0;
+}
+
+// Ace Editor Error Highlight
+.errorMarker {
+  position:absolute;
+  background: #FF0000;
+  z-index:20;
+  opacity: 0.2;
+}
+
+
+// Send page
+
+.dapp-select-account.inline {
+    display: inline-block;
+}
+
+.replay-protection {
+    position: relative;
+    top: 5px;
+}
+
+.replay-protection-div {
+    .dapp-address-input {
+        display: inline-block;
+        width: @gridWidth * 13;
+    }
+}
+
+
+
+

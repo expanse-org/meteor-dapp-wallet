@@ -66,7 +66,7 @@ Template['elements_transactions_table'].helpers({
                     return item;
 
                 // search value
-                if(pattern.test(EthTools.formatBalance(item.value, '0,0.00[000000] unit')))
+                if(pattern.test(ExpTools.formatBalance(item.value, '0,0.00[000000] unit')))
                     return item;
 
                 // search date
@@ -287,7 +287,7 @@ Template['elements_transactions_row'].events({
     'click tr:not(.pending)': function(e) {
         var $element = $(e.target);
         if(!$element.is('button') && !$element.is('a')) {
-            EthElements.Modal.show({
+            ExpElements.Modal.show({
                 template: 'views_modals_transactionInfo',
                 data: {
                     _id: this._id
@@ -339,7 +339,7 @@ Template['elements_transactions_row'].events({
 
                 if(wallet = Wallets.findOne({address: owner})) {
 
-                    // EthElements.Modal.question({
+                    // ExpElements.Modal.question({
                     //     text: 'Wallets can not currently confirm multisig transactions',
                     //     ok: true
                     // });
@@ -363,7 +363,7 @@ Template['elements_transactions_row'].events({
             else if(ownerAccounts.length > 1) {
 
                 // show modal
-                EthElements.Modal.question({
+                ExpElements.Modal.question({
                     template: 'views_modals_selectAccount',
                     data: {
                         accounts: (type === 'confirm') ? _.difference(ownerAccounts, this.confirmedOwners) : this.confirmedOwners,

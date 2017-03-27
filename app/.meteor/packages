@@ -27,7 +27,6 @@ less
 chuangbo:cookie
 jeeeyul:moment-with-langs
 tap:i18n
-tap:i18n-bundler
 raix:handlebar-helpers
 frozeman:animation-helper
 frozeman:template-var
@@ -40,9 +39,11 @@ mrt:qrcodesvg
 sacha:spin
 frozeman:global-notifications
 agnito:simptip
-ethereum:elements
-ethereum:web3
+expanse:elements
 ethereum:blocks
 ethereum:accounts
 ethereum:dapp-styles
 numeral:numeral
+expanse:web3
+jrudio:bluebird
+tap:i18n-bundler
