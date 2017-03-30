@@ -1,3 +1,5 @@
+// meant to speed up and make less requests
+var customContractsCache = {};
 /**
 Observe events
 
@@ -12,15 +14,15 @@ observeEvents = function(){
     */
     collectionObservers[collectionObservers.length] = Events.find({}).observe({
         /**
-        This will observe the transactions creation and create watchers for outgoing transactions, to see when they are mined.
+        This will observe when events are added and link it to the custom contract.
 
         @method added
         */
         added: function(newDocument) {
-            // add to accounts
             CustomContracts.update({address: newDocument.address.toLowerCase()}, {$addToSet: {
                 contractEvents: newDocument._id
             }});
+
         },
         /**
         Remove events confirmations from the accounts

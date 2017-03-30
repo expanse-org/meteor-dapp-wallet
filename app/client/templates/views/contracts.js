@@ -22,7 +22,7 @@ var addCustomContract = function(e) {
     var address = $('.modals-add-custom-contract input[name="address"]').hasClass('dapp-error')
             ? ''
             : $('.modals-add-custom-contract input[name="address"]').val(),
-        name = $('.modals-add-custom-contract input.name').val();
+        name = $('.modals-add-custom-contract input.name').val() || TAPi18n.__('wallet.accounts.defaultName');
 
     address = address.toLowerCase();
 
@@ -39,6 +39,16 @@ var addCustomContract = function(e) {
     }
 
     if(web3.isAddress(address)) {
+        // chech if contract already exists as wallet contract
+        if(Wallets.findOne({address: address})) {
+            GlobalNotification.warning({
+            content: TAPi18n.__('wallet.newWallet.error.alreadyExists'),
+            duration: 2
+            });
+
+            return false;
+        }
+
         CustomContracts.upsert({address: address}, {$set: {
             address: address,
             name: name,

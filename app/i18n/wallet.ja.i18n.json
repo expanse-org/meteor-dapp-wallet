@@ -38,6 +38,13 @@
             },
             "error": {
                 "wrongChain": "間違ったチェーン上にいます。Expanse Wallet App を再起動して下さい。"
+            },
+            "warnings": {
+                "txOriginVulnerabilityWallet": "このスマート契約財布は、古いコードを持っており、フィッシング攻撃の対象となります。",
+                "txOriginVulnerabilityCallToAction": "の今、あなたの契約をアップグレードして、あなたの新しいものにすべての資金を移します。",
+                "txOriginVulnerabilityAccount": "このアカウントは、脆弱財布契約の所有者であると悪質な契約にこのアカウントを使用して、あなたの財布の資金を危険にさらすことができます。このアカウントですべてのトランザクションを実行する前に、あなたの財布をアップグレードします。",
+                "txOriginVulnerabilityPopup": "私たちは、脆弱な財布を見つけました！新しい財布を展開し、資金を移動することを確認してください！",
+                "learnMore": "この脆弱性の詳細情報"
             }
         },
         "modals": {
@@ -119,7 +126,7 @@
             "amount": "量",
             "gasPrice": "ガスの値段",
             "perMillionGas": " PER MILLION GAS",
-            "gasUsed": "ガス使用量", 
+            "gasUsed": "ガス使用量",
             "feePaid": "支払い金額",
             "data": "データ送信",
             "deployedData": "配備されたデータ",
@@ -138,7 +145,7 @@
             },
             "error": {
                 "noDataDeployed": "アドレス内にデータがありません。",
-                "outOfGas": "トランザクションfrom __from__ to __to__ 正常に実行できませんでした"  
+                "outOfGas": "トランザクションfrom __from__ to __to__ 正常に実行できませんでした"
             },
             "types": {
                 "executeContract": "コントラクト実行",
@@ -161,7 +168,7 @@
                 },
                 "outgoingTransaction": {
                     "title": "支払い送信",
-                    "text": "You send __amount__ from __from__ to __to__."    
+                    "text": "You send __amount__ from __from__ to __to__."
                 },
                 "pendingConfirmation": {
                     "title": "確認して下さい",
@@ -299,6 +306,7 @@
             "buttons": {
                 "showContractInfo": "コントラクトの情報を表示",
                 "hideContractInfo": "コントラクトの情報を隠す",
+                "watchContractEvents": "契約のイベントを見ます",
                 "execute": "実行",
                 "yes": "はい"
             },
