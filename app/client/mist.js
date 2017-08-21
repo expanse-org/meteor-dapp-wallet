@@ -7,7 +7,7 @@ updateMistBadge = function(){
 
         var balance = _.reduce(_.pluck(_.union(accounts, wallets), 'balance'), function(memo, num){ return memo + Number(num); }, 0);
 
-        mist.menu.setBadge(EthTools.formatBalance(balance, '0.0 a','ether') + ' ETH');
+        mist.menu.setBadge(EthTools.formatBalance(balance, '0.0 a','expanse') + ' EXP');
     }
 };
 

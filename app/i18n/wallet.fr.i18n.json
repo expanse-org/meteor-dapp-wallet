@@ -23,7 +23,7 @@
             "texts": {
                 "note": "Note",
                 "balance": "Solde",
-                "connectionErrorMist": "Impossible de se connecter. Veuillez lancer gexp en utilisant : <br><br><small><code>__node__</code><br><br>Assurez-vous d'avoir bien renseigné le chemin IPC par défaut lorsque vous utilisez un <code>datadir</code> différent, ex : <br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Expanse/geth.ipc</code><br>ou<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.Expanse/geth.ipc</code>. <br><br>Ajout facultatif : <code>--unlock &lt;votreCompte&gt;.</code></small>",
+                "connectionErrorMist": "Impossible de se connecter. Veuillez lancer gexp en utilisant : <br><br><small><code>__node__</code><br><br>Assurez-vous d'avoir bien renseigné le chemin IPC par défaut lorsque vous utilisez un <code>datadir</code> différent, ex : <br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Expanse/gexp.ipc</code><br>ou<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.Expanse/gexp.ipc</code>. <br><br>Ajout facultatif : <code>--unlock &lt;votreCompte&gt;.</code></small>",
                 "connectionErrorBrowser": "Impossible de se connecter. Veuillez lancer gexp en utilisant les options suivantes : <br><br><small><code>__node__</code><br><br>Ajout facultatif : <code>--unlock &lt;votreCompte&gt;.</code></small>",
                 "pendingConfirmationsBadge": "Confirmation en cours !",
                 "nodeSyncing": "__blockDiff__ blocs restants",
@@ -90,6 +90,7 @@
             "buttons": {
                 "deposit": "Déposer de l'ether",
                 "depositBitcoin": "Déposer via du Bitcoin",
+                "viewOnExplorer": "View on Etherscan",
                 "copyAddress": "Copier l'adresse",
                 "scanQRCode": "Afficher le QR Code",
                 "showInterface": "Afficher l'interface"
@@ -274,7 +275,7 @@
             "title": "<strong>Jetons</strong> que vous suivez",
             "subTitle": "Jetons ajoutés",
             "admin": "__name__ (page d'administration)",
-            "description": "Les jetons sont des devises et autres fongibles construits sur la plateforme Expanse. Pour que les comptes puissent voir et envoyer des jetons, vous devez ajouter l'adresse de leur contrat à cette liste. Vous pouvez créer votre propre jeton simplement en modifiant <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">cet exemple d'un contrat de jeton</a> ou en en apprenant plus sur <a href=\"https://www.Expanse.org/token#the-code\" target=\"_blank\">les jetons dans Expanse</a>.",
+            "description": "Les jetons sont des devises et autres fongibles construits sur la plateforme Expanse. Pour que les comptes puissent voir et envoyer des jetons, vous devez ajouter l'adresse de leur contrat à cette liste. Vous pouvez créer votre propre jeton simplement en modifiant <a href=\"https://github.com/expanse-org/Tokens\" target=\"_blank\">cet exemple d'un contrat de jeton</a> ou en en apprenant plus sur <a href=\"https://github.com/expanse-org/Tokens\" target=\"_blank\">les jetons dans Expanse</a>.",
             "deleteToken": "Voulez-vous supprimer le jeton <strong>__token__</strong> de votre liste ?",
             "addedToken": "__token__ ajouté à votre liste",
             "editedToken": "Jeton __token__ modifié",

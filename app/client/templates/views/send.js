@@ -19,7 +19,7 @@ when the user actually wants to send the dummy data.
 
 @property defaultEstimateGas
 */
-var defaultEstimateGas = 5000000;
+var defaultEstimateGas = 50000000;
 
 
 /**
@@ -102,19 +102,21 @@ Template['views_send'].onCreated(function(){
     TemplateVar.set('estimatedGas', 300000);
     TemplateVar.set('sendAll', false);
 
+    // Deploy contract
+    if(FlowRouter.getRouteName() === 'deployContract') {
+        TemplateVar.set('selectedAction', 'deploy-contract');
+        TemplateVar.set('selectedToken', 'ether');
+
+    // Send funds
+    } else {
+        TemplateVar.set('selectedAction', 'send-funds');
+        TemplateVar.set('selectedToken', FlowRouter.getParam('token') || 'ether');
+    }
+
     // check if we are still on the correct chain
     Helpers.checkChain(function(error) {
         if(error && (EthAccounts.find().count() > 0)) {
             checkForOriginalWallet();
-        }
-    });
-
-    // change the token type when the account is changed
-    template.autorun(function(c){
-        var address = TemplateVar.getFrom('.dapp-select-account.send-from', 'value');
-
-        if(!c.firstRun) {
-            TemplateVar.set('selectedToken', 'ether');
         }
     });
 
@@ -148,8 +150,7 @@ Template['views_send'].onRendered(function(){
     // focus address input field
     if(FlowRouter.getParam('address')) {
         this.find('input[name="to"]').value = FlowRouter.getParam('address');
-        this.$('input[name="to"]').trigger('change');
-
+        this.$('input[name="to"]').trigger('input');
     } else if(!this.data){
         this.$('input[name="to"]').focus();
     }
@@ -159,6 +160,34 @@ Template['views_send'].onRendered(function(){
     if(from)
         TemplateVar.setTo('select[name="dapp-select-account"].send-from', 'value', FlowRouter.getParam('from').toLowerCase());
 
+
+    // initialize send view correctly when directly switching from deploy view
+    template.autorun(function(c){
+        if(FlowRouter.getRouteName() === 'send') {
+            TemplateVar.set('selectedAction', 'send');
+            TemplateVar.setTo('.dapp-data-textarea', 'value', '');
+        }
+    });
+
+
+    // change the token type when the account is changed
+    var selectedAddress;
+    template.autorun(function(c){
+
+        address = TemplateVar.getFrom('.dapp-select-account.send-from', 'value');
+
+        if (c.firstRun) {
+            selectedAddress = address;
+            return;
+        };
+
+
+        if (selectedAddress !== address) {
+            TemplateVar.set('selectedToken', 'ether');
+        }
+
+        selectedAddress = address;
+    });
 
     // ->> GAS PRICE ESTIMATION
     template.autorun(function(c){
@@ -207,24 +236,6 @@ Template['views_send'].onRendered(function(){
 
 
 Template['views_send'].helpers({
-    /**
-    React on the template data context
-
-    @method (reactiveData)
-    */
-    'reactiveData': function(deployContract){
-
-        // Deploy contract
-        if(this && this.deployContract) {
-            TemplateVar.set('selectedAction', 'deploy-contract');
-            TemplateVar.set('selectedToken', 'expanse');
-
-        // Send funds
-        } else {
-            TemplateVar.set('selectedAction', 'send-funds');
-            TemplateVar.set('selectedToken', FlowRouter.getParam('token') || 'expanse');
-        }
-    },
     /**
     Get the current selected account
 
@@ -502,11 +513,12 @@ Template['views_send'].events({
             data = getDataField(),
             contract = TemplateVar.getFrom('.compile-contract', 'contract'),
             sendAll = TemplateVar.get('sendAll');
+
         if(selectedAccount && !TemplateVar.get('sending')) {
 
             // set gas down to 21 000, if its invalid data, to prevent high gas usage.
             if(estimatedGas === defaultEstimateGas || estimatedGas === 0)
-                estimatedGas = 21000;
+                estimatedGas = 22000;
 
             // if its a wallet contract and tokens, don't need to remove the gas addition on send-all, as the owner pays
             if(sendAll && (selectedAccount.owners || tokenAddress !== 'expanse'))
@@ -549,11 +561,12 @@ Template['views_send'].events({
 
             } else { // Token transfer
 
-                if(!to)
-                return GlobalNotification.warning({
-                    content: 'i18n:wallet.send.error.noReceiver',
-                    duration: 2
-                });
+                if(!to) {
+                    return GlobalNotification.warning({
+                        content: 'i18n:wallet.send.error.noReceiver',
+                        duration: 2
+                    });
+                }
 
                 // Change recipient and amount
                 to = tokenAddress;
