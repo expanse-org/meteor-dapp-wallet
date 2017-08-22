@@ -95,8 +95,6 @@
             "accountsDescription": "Accounts are password protected keys that can hold Expanse and Expanse-based tokens.  They can control contracts, but can't display incoming transactions.",
             "buttons": {
                 "deposit": "Transfer Expanse & Tokens",
-                "depositBitcoin": "Fund with Bitcoin",
-                "depositUsingCreditCard": "Fund with a Credit Card (U.S. only)",
                 "viewOnExplorer": "View on Gander.tech",
                 "copyAddress": "Copy address",
                 "scanQRCode": "Show QR-Code",
