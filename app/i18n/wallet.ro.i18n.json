@@ -30,7 +30,7 @@
                 "blockReceived": "Bloc nou descarcat",
                 "timeSinceBlock": "de la ultimul bloc",
                 "peers": "peers",
-                "testnetExplain": "Te afli in reteaua de teste, NU TRIMITE exp din reteaua principala catre aceste adrese",
+                "testnetExplain": "Te afli in reteaua de teste, NU TRIMITE expanse din reteaua principala catre aceste adrese",
                 "noAccounts": {
                     "title": "Nu ai niciun cont configurat",
                     "text": "Inainte de a folosi portofelul, ai nevoie de un cont securizat cu o parola puternica."
@@ -52,7 +52,7 @@
                 "title": "Alege un cont"
             },
             "testnetWallet": {
-                "walletNeedsDeployment": "Esti pe reteaua de teste.<br><br>Nu am gasit niciun portofel, trebuie implementat un portofel ce poate fi folosit de contracte, de la adresa ta: <br><br><small><code>__account__</code></small><br><br><em>Please make sure this address has at least 1 exp!</em>",
+                "walletNeedsDeployment": "Esti pe reteaua de teste.<br><br>Nu am gasit niciun portofel, trebuie implementat un portofel ce poate fi folosit de contracte, de la adresa ta: <br><br><small><code>__account__</code></small><br><br><em>Please make sure this address has at least 1 expanse!</em>",
                 "testnetWalletDeployed": "Portofelul a fost implementat!<br>Acest portofel a fost implementat pe adresa:<br><br><small><code>__address__</code></small>."
             },
             "addToken": {
@@ -76,20 +76,21 @@
             "defaultName": "Portofel nou",
             "creating": "Se creeaza",
             "importing": "Se importa",
-            "accountNote": "Conturile nu pot afisa jurnalul tranzactiilor dar pot stoca si trimite exp. Pentru a vedea jurnalul tranzactiilor <a href=\"/account/new\">implementeaza un portofel bazat pe contracte</a> pentru a stoca exp.",
-            "walletNote": "Majoritatea furnizorilor de servicii de schimb nu permit ca tranzactiile de exp sa fie facute dintr-un portofel de tip contract-inteligent. Asigura-te ca trimiti intai exp catre contul tau!",
+            "accountNote": "Conturile nu pot afisa jurnalul tranzactiilor dar pot stoca si trimite expanse. Pentru a vedea jurnalul tranzactiilor <a href=\"/account/new\">implementeaza un portofel bazat pe contracte</a> pentru a stoca expanse.",
+            "walletNote": "Majoritatea furnizorilor de servicii de schimb nu permit ca tranzactiile de expanse sa fie facute dintr-un portofel de tip contract-inteligent. Asigura-te ca trimiti intai expanse catre contul tau!",
             "addressCopiedToClipboard": "Copiaza adresa ta",
             "qrCodeLabel": "Scaneaza acest cod cu o aplicatie mobila compatibila",
             "dailyLimit": "Limita zilnica",
             "dailyLimitRemaining": "ramasa azi",
             "requiredSignatures": "Semnaturi necesare",
             "owners": "Detinatori",
-            "walletsDescription": "Acestea sunt contracte ce stocheaza si securizeaza exp. Ele pot avea mai multi detinatori si pot pastra intregul jurnal al tranzactiilor.",
-            "walletsDescriptionNotEnoughFunds": "Ai nevoie de cel putin 1 exp pentru a implementa contracte mai sofisticate. Portofelele sunt la baza niste contracte inteligente, ce pot fi controlate de mai multi detinatori si chiar se pot seta limite de retragere pentru o mai buna securitate.  Pentru a implementa un contract personalizat, mergi la sectiunea <em> Contracts </em>.",        
-            "accountsDescription": "Conturile sunt chei securizate prin parola ce pot controla contractele. Conturile pot stoca exp dar nu pot lista jurnalul tranzactiilor.",
+            "walletsDescription": "Acestea sunt contracte ce stocheaza si securizeaza expanse. Ele pot avea mai multi detinatori si pot pastra intregul jurnal al tranzactiilor.",
+            "walletsDescriptionNotEnoughFunds": "Ai nevoie de cel putin 1 expanse pentru a implementa contracte mai sofisticate. Portofelele sunt la baza niste contracte inteligente, ce pot fi controlate de mai multi detinatori si chiar se pot seta limite de retragere pentru o mai buna securitate.  Pentru a implementa un contract personalizat, mergi la sectiunea <em> Contracts </em>.",        
+            "accountsDescription": "Conturile sunt chei securizate prin parola ce pot controla contractele. Conturile pot stoca expanse dar nu pot lista jurnalul tranzactiilor.",
             "buttons": {
                 "deposit": "Depunere",
                 "depositBitcoin": "Depunere Bitcoin",
+                "viewOnExplorer": "View on Gander",
                 "copyAddress": "Copiaza adresa",
                 "scanQRCode": "Arata QR-Code",
                 "showInterface": "Arata Interfata"
@@ -196,7 +197,7 @@
                     "description": "Un portofel controlat de mai multe conturi.",
                     "text1": "Acesta este un portofel controlat de",
                     "text2": "detinatori. Poti trimite pana la",
-                    "text3": "exp pe zi.",
+                    "text3": "expanse pe zi.",
                     "text4": "Orice tranzactie ce depaseste limita zilnica, necesita confirmarea celor",
                     "text5": "detinatori.",
                     "accountOwnersTitle": "Detinatorii Portofelului",
@@ -249,7 +250,7 @@
             "texts": {
                 "ownerPaysGas": "Gas is payed by the owner of the wallet contract",
                 "sendAmount": "Vei trimite <strong>__amount__</strong>.",
-                "sendAmountEquivalent": "Vei trimite <strong>__amount__</strong> in exp, folosind rata de <a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>In acest moment echivalentul a <strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "Vei trimite <strong>__amount__</strong> in expanse, folosind rata de <a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>In acest moment echivalentul a <strong>__etherAmount__</strong>.",
                 "sendToken": "You want to send <strong>__amount__ __name__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">Aceasta suma depaseste limita zilnica de __limit__ (of __total__ pe zi), ai nevoie de aceste __count__ conturi pentru confirmare.</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">Aceasta suma depaseste limita zilnica de __limit__ (of __total__ pe zi), ai nevoie de aceste __count__ conturi pentru a confirmare.</p>",
@@ -258,7 +259,7 @@
                 "noCodeInRecipient": "Destinatarul nu este un contract, nu se pot executa instructiuni. <strong> Pune adresa unui contract in campul 'CATRE' . </strong>",
                 "addData": "Poti adauga date suplimentare alaturi de aceasta tranzactie. Daca acest camp \"to\" va ramane gol, acesta va incerca sa implementeze un contract cu datele introduse.",
                 "dataNotExecutable": "Datele nu par a fi eligibile pentru executie, asta inseamna ca aceasta tranzactie va folosi gas-ul pus la dispozitie.",
-                "cantEstimateGas": "Nu putem estima cu exactitate cantintatea de gas ce urmeaza sa fie folosita, trebuie sa ai cel putin 1 exp in cont.",
+                "cantEstimateGas": "Nu putem estima cu exactitate cantintatea de gas ce urmeaza sa fie folosita, trebuie sa ai cel putin 1 expanse in cont.",
                 "estimatedGas": "Estimare gas necesar",
                 "timeTexts": {
                     "0": "in cateva minute sau chiar mai mult",
@@ -274,7 +275,7 @@
             "title": "Monede <strong>Personalizate</strong>",
             "subTitle": "Monede adaugate",
             "admin": "__name__ (pagina de administrare)",
-            "description": "Monedele sunt valute sau alte bunuri fungibile construite pe platforma Expanse. Pentru a putea urmari sau tranzactiona aceste monede, va trebui sa adaugi adresa lor in aceasta lista. Poti crea propria moneda modificand codul aflat aici: <a href=\"http://chriseth.github.io/browser-solidity/?gist=20c8b5658349b003b08d\" target=\"_blank\">in acest exemplu de contract pentru o moneda personalizata</a> sau afla mai multe aici  <a href=\"https://github.com/expanse-org/wiki/wiki/Standardized_Contract_APIs#token\" target=\"_blank\">Standard al Monedelor Personalizate</a>.",
+            "description": "Monedele sunt valute sau alte bunuri fungibile construite pe platforma Expanse. Pentru a putea urmari sau tranzactiona aceste monede, va trebui sa adaugi adresa lor in aceasta lista. Poti crea propria moneda modificand codul aflat aici: <a href=\"http://chriseth.github.io/browser-solidity/?gist=20c8b5658349b003b08d\" target=\"_blank\">in acest exemplu de contract pentru o moneda personalizata</a> sau afla mai multe aici  <a href=\"https://github.com/expanse/wiki/wiki/Standardized_Contract_APIs#token\" target=\"_blank\">Standard al Monedelor Personalizate</a>.",
             "deleteToken": "Vrei sa stergi aceasta moneda <strong>__token__</strong> din lista ta?",
             "addedToken": " __token__ a fost adaugata in lista ta",
             "editedToken": " __token__ a fost modificat",
@@ -302,7 +303,7 @@
             "writeToContract": "Scrie in contract",
             "pickContract": "Alege un contract",
             "pickFunction": "Alege o functie",
-            "noContract": "<p>Pune aici codul sursa al contractului dorit. Poti gasi mai multe exemple de cotracte aici: <a href=\"http://expanse.tech\" target=\"_blank\">expanse.tech</a>: </p> <ul><li><a href=\"http://expanse.tech/token#the-code\" target=\"_blank\">Implementeaza un token</a></li><li><a href=\"http://expanse.tech/crowdsale#the-code\" target=\"_blank\">Lanseaza o campanie pentru strangere de fonduri</a></li><li><a href=\"http://expanse.tech/dao#the-code\" target=\"_blank\">Implementeaza o organizatie bazata pe blockchain</a></li></ul>",
+            "noContract": "<p>Pune aici codul sursa al contractului dorit. Poti gasi mai multe exemple de cotracte aici: <a href=\"http://expanse.org\" target=\"_blank\">expanse.org</a>: </p> <ul><li><a href=\"http://expanse.org/token#the-code\" target=\"_blank\">Implementeaza un token</a></li><li><a href=\"http://expanse.org/crowdsale#the-code\" target=\"_blank\">Lanseaza o campanie pentru strangere de fonduri</a></li><li><a href=\"http://expanse.org/dao#the-code\" target=\"_blank\">Implementeaza o organizatie bazata pe blockchain</a></li></ul>",
             "buttons": {
                 "showContractInfo": "Arata informatii despre contract",
                 "hideContractInfo": "Ascunde informatii despre contract",

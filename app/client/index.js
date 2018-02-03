@@ -21,27 +21,31 @@ Meteor.startup(function() {
         if(_.isString(TAPi18n.getLanguage())) {
             var lang = TAPi18n.getLanguage().substr(0,2);
             moment.locale(lang);
-            numeral.language(lang);
+            try {
+                numeral.language(lang);
+            } catch (err) {
+                console.warn('numeral.js couldn\'t set number formating: ', err.message);
+            }
             ExpTools.setLocale(lang);
         }
 
         // If on the mainnet, this will add the unicorn token by default, only once.
-        /*if (!localStorage['dapp_hasUnicornToken'] && Session.get('network') === 'main'){
-            localStorage.setItem('dapp_hasUnicornToken', true);
+        if (!localStorage['dapp_hasLabToken'] && Session.get('network') === 'main'){
+            localStorage.setItem('dapp_hasLabToken', true);
 
             // wait 5s, to allow the tokens to be loaded from the localstorage first
             Meteor.setTimeout(function(){
-                var unicornToken = '0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7';
+                var unicornToken = '0xa887adb722cf15bc1efe3c6a5d879e0482e8d197';
                 tokenId = Helpers.makeId('token', unicornToken);
                 Tokens.upsert(tokenId, {$set: {
                     address: unicornToken,
-                    name: 'Unicorns',
-                    symbol: '🦄',
+                    name: 'Tokenlab',
+                    symbol: 'LAB',
                     balances: {},
-                    decimals: 0
-                }});    
+                    decimals: 18
+                }});
             }, 5000);
-        }*/
+        }
     });
 
 

@@ -51,12 +51,12 @@ Template['elements_compileContract'].onCreated(function() {
         runDelayed = null;
     }, 1000);
 
-    // update and generate the contract data 
+    // update and generate the contract data
     this.autorun(function() {
 
         if(runDelayed)
             runDelayed.depend();
-        
+
         // selected contract
         var selectedContract = TemplateVar.get('selectedContract');
         var constructorInputs = _.clone(TemplateVar.get('constructorInputs'));
@@ -65,31 +65,31 @@ Template['elements_compileContract'].onCreated(function() {
         var textareaData = TemplateVar.getFrom('.dapp-data-textarea', 'value');
         var txData = '';
 
-        if(selectedType && selectedType === 'source-code' && selectedContract){  
+        if(selectedType && selectedType === 'source-code' && selectedContract){
             // add the default web3 sendTransaction arguments
             constructorInputs.push({
                 data: selectedContract.bytecode
             });
-    
+
             // generate new contract code
             // TemplateVar.set('txData', );
             txData = web3.eth.contract(selectedContract.jsonInterface).new.getData.apply(null, constructorInputs);
             TemplateVar.set('contract', selectedContract);
-    
+
             // Save data to localstorage
             localStorage.setItem('selectedContract', JSON.stringify(selectedContract));
 
         } else {
-            // Bytecode Data  
-            if (!selectedToken || selectedToken === 'ether') {
+            // Bytecode Data
+            if (!selectedToken || selectedToken === 'expanse') {
 
-                // send ether         
+                // send ether
                 txData = (TemplateVar.get('show')) ? textareaData : '';
 
             }
         }
-        
-        TemplateVar.set("txData", txData);   
+
+        TemplateVar.set("txData", txData);
     });
 });
 
@@ -126,7 +126,7 @@ Template['elements_compileContract'].onRendered(function() {
 
         Meteor.setTimeout(function(argument) {
             web3.eth.compile.solidity(sourceCode, function(error, compiledContracts){
-                
+
 
                 // read the fields again
                 Tracker.afterFlush(function() {
@@ -135,7 +135,7 @@ Template['elements_compileContract'].onRendered(function() {
                 });
 
                 // clean all error markers
-                _.each(editor.session.$backMarkers, function(i) { 
+                _.each(editor.session.$backMarkers, function(i) {
                     editor.session.removeMarker(i.id);
                 })
 
@@ -143,7 +143,7 @@ Template['elements_compileContract'].onRendered(function() {
 
                     compiledContracts = _.map(compiledContracts, function(contract, name){
                         var jsonInterface = JSON.parse(contract.interface);
-                        
+
                         // find the constructor function
                         var constructor = _.find(jsonInterface, function(func){
                             return func.type == 'constructor';
@@ -151,7 +151,7 @@ Template['elements_compileContract'].onRendered(function() {
 
                         // substring the type so that string32 and string16 wont need different templates
                         if(constructor) {
-                            
+
                             constructor.inputs = _.map(constructor.inputs, Helpers.createTemplateDataFromInput)
                         } else {
                             constructor = {
@@ -162,7 +162,7 @@ Template['elements_compileContract'].onRendered(function() {
 
                         return {
                             name: name,
-                            bytecode: contract.bytecode,
+                            bytecode: '0x' + contract.bytecode.replace(/^0x/, ''),
                             jsonInterface: jsonInterface,
                             constructorInputs: constructor.inputs
                         };
@@ -174,7 +174,7 @@ Template['elements_compileContract'].onRendered(function() {
 
 
                 } else {
-                    
+
                     // Converts error into multiple bits
                     var errorLine = error.toString().split(':');
 
@@ -192,14 +192,14 @@ Template['elements_compileContract'].onRendered(function() {
                         editor.session.addMarker(new Range(errorLine[2]-1, errorLine[3]-1, errorLine[2]-1, Number(errorLine[3]) + errorLength), "errorMarker");
 
                         // Doesnt compile in solidity either, throw error
-                        TemplateVar.set(template, 'compileError', errorLine[5]);  
+                        TemplateVar.set(template, 'compileError', errorLine[5]);
                     }
-                    
+
                     TemplateVar.set(template, 'compiledContracts', false);
                     TemplateVar.set(template, 'selectedContract', false);
                 }
             });
-            
+
         }, 100);
     }, 600));
 });
@@ -235,7 +235,7 @@ Template['elements_compileContract'].helpers({
     @method (selectedContractInputs)
     */
     'selectedContractInputs' : function(){
-        selectedContract = TemplateVar.get('selectedContract');        
+        selectedContract = TemplateVar.get('selectedContract');
         return selectedContract ? selectedContract.constructorInputs : [];
     }
 });
@@ -244,7 +244,7 @@ Template['elements_compileContract'].helpers({
 Template['elements_compileContract'].events({
     /**
     Show the extra data field
-    
+
     @event click button.show-data
     */
     'click button.show-data': function(e){
@@ -253,7 +253,7 @@ Template['elements_compileContract'].events({
     },
     /**
     Show the extra data field
-    
+
     @event click button.hide-data
     */
     'click button.hide-data': function(e, template){
@@ -265,7 +265,7 @@ Template['elements_compileContract'].events({
     },
     /**
     Textfield switcher
-    
+
     @event click .dapp-segmented-control input
     */
     'click .dapp-segmented-control input': function(e, template){
@@ -273,7 +273,7 @@ Template['elements_compileContract'].events({
     },
     /**
     Selected a contract function
-    
+
     @event 'change .contract-functions
     */
     'change .compiled-contracts': function(e, template){
@@ -301,7 +301,7 @@ Template['elements_compileContract'].events({
     },
     /**
     Compile the solidty code, when
-    
+
     @event change abi-input, input .abi-input
     */
     'change .abi-input, input .abi-input': function(e, template){

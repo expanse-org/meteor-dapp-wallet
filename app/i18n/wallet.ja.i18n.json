@@ -30,7 +30,7 @@
                 "blockReceived": "新ブロック受信",
                 "timeSinceBlock": "最後のブロックを受信してから",
                 "peers": "ピアーズ",
-                "testnetExplain": "これはテストネットです。これらのアドレスにexpを絶対に送らないでください。",
+                "testnetExplain": "これはテストネットです。これらのアドレスにexpanseを絶対に送らないでください。",
                 "noAccounts": {
                     "title": "アカウント未登録",
                     "text": "パスワード付きのアカウントを作成してください。"
@@ -52,7 +52,7 @@
                 "title": "アカウントを選択"
             },
             "testnetWallet": {
-                "walletNeedsDeployment": "テストネット上にいます。<br><br>オリジナルウォレットの契約コードが見つかりません、ウォレットコントラクトのスタブコントラクトが使用可能なものをあなたのアドレスから作らなければなりません。: <br><br><small><code>__account__</code></small><br><br><em>最低でも1exp以上アドレスに入っていなければなりません！</em>",
+                "walletNeedsDeployment": "テストネット上にいます。<br><br>オリジナルウォレットの契約コードが見つかりません、ウォレットコントラクトのスタブコントラクトが使用可能なものをあなたのアドレスから作らなければなりません。: <br><br><small><code>__account__</code></small><br><br><em>最低でも1ether以上アドレスに入っていなければなりません！</em>",
                 "testnetWalletDeployed": "オリジナルのウォレットコントラクトが配置されました！<br>オリジナルのウォレットコントラクトがアドレス上に配置されました。:<br><br><small><code>__address__</code></small>."
             },
             "addToken": {
@@ -76,20 +76,21 @@
             "defaultName": "無名",
             "creating": "作成中",
             "importing": "インポート中",
-            "accountNote": "アカウントは預入のトランザクションの表示を出来ませんが、expを送って下さい。預入のトランザクションを見るには <a href=\"/account/new\">ウォレットコントラクトを作って下さい</a> expを入れるために。",
-            "walletNote": "ほとんどの取引はexpをコントラクトウォレットから受け取ることにまだ対応していません。必ず先にアカウントアドレスにお金を移行して下さい！",
+            "accountNote": "アカウントは預入のトランザクションの表示を出来ませんが、expanseを送って下さい。預入のトランザクションを見るには <a href=\"/account/new\">ウォレットコントラクトを作って下さい</a> expanseを入れるために。",
+            "walletNote": "ほとんどの取引はexpanseをコントラクトウォレットから受け取ることにまだ対応していません。必ず先にアカウントアドレスにお金を移行して下さい！",
             "addressCopiedToClipboard": "クリップボードにコピーされました",
             "qrCodeLabel": "互換性のあるアプリでQRコードを読み取って下さい",
             "dailyLimit": "１日の制限金額",
             "dailyLimitRemaining": "残高",
             "requiredSignatures": "サインをして下さい",
             "owners": "持ち主",
-            "walletsDescription": "これらの契約はブロックチェーン上に保管され、expを安全に保管できます。オーナーとしてマルチプルアカウントを保有することができ、全てのトランザクションのログを見ることができます。",
-            "walletsDescriptionNotEnoughFunds": "１exp以上保有しているとより高度な契約ができる様になります。Once you have more than 1 exp you can create a more sophisticated contracts. ウォレットはベーシックなスマートコントラクトの一種で、資金をマルチプルアカウントで管理し、セキュリティー増強のためにオプションで１日当たりの引き出し制限することもできます。 カスタムコントラクトを作るには <em> コントラクト </em> タブ",
-            "accountsDescription": "アカウントはexpを保有できる、パスワードで保護されたキーです、イーサリアムベースのトークンかコインを保全しコントラクトを管理します。アカウントは入ってくる取引を表示できません。",
+            "walletsDescription": "これらの契約はブロックチェーン上に保管され、expanseを安全に保管できます。オーナーとしてマルチプルアカウントを保有することができ、全てのトランザクションのログを見ることができます。",
+            "walletsDescriptionNotEnoughFunds": "１expanse以上保有しているとより高度な契約ができる様になります。Once you have more than 1 expanse you can create a more sophisticated contracts. ウォレットはベーシックなスマートコントラクトの一種で、資金をマルチプルアカウントで管理し、セキュリティー増強のためにオプションで１日当たりの引き出し制限することもできます。 カスタムコントラクトを作るには <em> コントラクト </em> タブ",
+            "accountsDescription": "アカウントはexpanseを保有できる、パスワードで保護されたキーです、イーサリアムベースのトークンかコインを保全しコントラクトを管理します。アカウントは入ってくる取引を表示できません。",
             "buttons": {
-                "deposit": "Expをデポジット",
+                "deposit": "Expanseをデポジット",
                 "depositBitcoin": "Bitcoinを使ってデポジット",
+                "viewOnExplorer": "View on Gander",
                 "copyAddress": "アドレスをコピー",
                 "scanQRCode": "QRコードを表示",
                 "showInterface": "インターフェイスを表示"
@@ -126,7 +127,7 @@
             "amount": "量",
             "gasPrice": "ガスの値段",
             "perMillionGas": " PER MILLION GAS",
-            "gasUsed": "ガス使用量",
+            "gasUsed": "ガス使用量", 
             "feePaid": "支払い金額",
             "data": "データ送信",
             "deployedData": "配備されたデータ",
@@ -145,7 +146,7 @@
             },
             "error": {
                 "noDataDeployed": "アドレス内にデータがありません。",
-                "outOfGas": "トランザクションfrom __from__ to __to__ 正常に実行できませんでした"
+                "outOfGas": "トランザクションfrom __from__ to __to__ 正常に実行できませんでした"  
             },
             "types": {
                 "executeContract": "コントラクト実行",
@@ -168,7 +169,7 @@
                 },
                 "outgoingTransaction": {
                     "title": "支払い送信",
-                    "text": "You send __amount__ from __from__ to __to__."
+                    "text": "You send __amount__ from __from__ to __to__."    
                 },
                 "pendingConfirmation": {
                     "title": "確認して下さい",
@@ -196,7 +197,7 @@
                     "description": "マルチプルアカウントによって管理されたコントラクト",
                     "text1": "これは接続アカウントです、管理しているのは",
                     "text2": "オーナーです。送信の上限は",
-                    "text3": "exp／１日",
+                    "text3": "expanse／１日",
                     "text4": "１日の上限を超えるトランザクションは承認が必要です",
                     "text5": "オーナーの",
                     "accountOwnersTitle": "アカウントオーナー",
@@ -249,7 +250,7 @@
             "texts": {
                 "ownerPaysGas": "ガスはウォレットコントラクトのオーナーによって支払われます",
                 "sendAmount": "送りたい <strong>__量__</strong>.",
-                "sendAmountEquivalent": "送りたい<strong>__量__</strong>exp、交換レートは<a href=\"https://www.cryptocompare.com/coins/exp/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>現在の価値に換算すると<strong>__etherAmount__</strong>.",
+                "sendAmountEquivalent": "送りたい<strong>__量__</strong>expanse、交換レートは<a href=\"https://www.cryptocompare.com/coins/eth/overview/BTC\" target=\"_blank\">cryptocompare.com</a>.<br>現在の価値に換算すると<strong>__etherAmount__</strong>.",
                 "sendToken": "送りたい<strong>__量__ __symbol__</strong> の <strong> __名前__</strong>.",
                 "overDailyLimit": "<p class=\"over-daily\">この量は１日の上限を超えています__limit__ (of __total__ per day),  __count__ 了承するための他のアカウント。</p>",
                 "overDailyLimit_plural": "<p class=\"over-daily\">この量は１日の上限を超えています __limit__ (of __total__ per day), so you need __count__ other accounts to confirm.</p>",
@@ -258,7 +259,7 @@
                 "noCodeInRecipient": "受領者アカウントはコントラクトではありません、何も実行することはできません。 <strong> コントラクトアドレスを'TO' に入れてください。 </strong>",
                 "addData": "トランザクションにデータを付与することができます。もし\"to\" の項目を空欄にするとデータを元にコントラクトを配置しようとします。",
                 "dataNotExecutable": "実行可能なデータではないようです、 that means this transaction will use all the gas you provide.",
-                "cantEstimateGas": "We can't estimate your gas usage properly, as you need at least 1 exp in your account.",
+                "cantEstimateGas": "We can't estimate your gas usage properly, as you need at least 1 expanse in your account.",
                 "estimatedGas": "必要とされるガスの推定",
                 "timeTexts": {
                     "0": "数分以内かそれ以上",
@@ -274,7 +275,7 @@
             "title": "カスタム <strong>トークン</strong>",
             "subTitle": "トークンを足す",
             "admin": "__名前__ (admin page)",
-            "description": "トークンはイーサリアムのプラットホーム上に構築された通貨であり、他の代替可能なものです。アカウントがトークンを送るためには、それらのアドレスをリストに追加しなければなりません。次のものを修正することによって簡単に自分のトークンを作ることができます、 <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">カスタムトークンコントラクトの例トークン</a> もしくはこちらをもっと学ぶ <a href=\"https://www.expanse.tech/token#the-code\" target=\"_blank\">Expanse Tokens</a>.",
+            "description": "トークンはイーサリアムのプラットホーム上に構築された通貨であり、他の代替可能なものです。アカウントがトークンを送るためには、それらのアドレスをリストに追加しなければなりません。次のものを修正することによって簡単に自分のトークンを作ることができます、 <a href=\"https://github.com/ethereum/EIPs/issues/644\" target=\"_blank\">カスタムトークンコントラクトの例トークン</a> もしくはこちらをもっと学ぶ <a href=\"https://www.tokenlab.io\" target=\"_blank\">Expanse Tokens</a>.",
             "deleteToken": "トークンを削除しますか<strong>__token__</strong> あなたのリストから",
             "addedToken": "Added __token__ to your watch list",
             "editedToken": "Edited token __token__",
@@ -302,7 +303,7 @@
             "writeToContract": "コントラクトを書く",
             "pickContract": "コントラクトを選ぶ",
             "pickFunction": "ファンクションを選ぶ",
-            "noContract": "<p>欲しいコントラクトのソースをここに置いて下さい。 コントラクトのサンプルはこちらに沢山あります。 <a href=\"http://expanse.tech\" target=\"_blank\">expanse.tech</a>: </p> <ul><li><a href=\"http://expanse.tech/token#the-code\" target=\"_blank\">Build a token</a></li><li><a href=\"http://expanse.tech/crowdsale#the-code\" target=\"_blank\">Start a crowdsale</a></li><li><a href=\"http://expanse.tech/dao#the-code\" target=\"_blank\">Create a blockchain organization</a></li></ul>",
+            "noContract": "<p>欲しいコントラクトのソースをここに置いて下さい。 コントラクトのサンプルはこちらに沢山あります。 <a href=\"http://expanse.org\" target=\"_blank\">expanse.org</a>: </p> <ul><li><a href=\"http://expanse.org/token#the-code\" target=\"_blank\">Build a token</a></li><li><a href=\"http://expanse.org/crowdsale#the-code\" target=\"_blank\">Start a crowdsale</a></li><li><a href=\"http://expanse.org/dao#the-code\" target=\"_blank\">Create a blockchain organization</a></li></ul>",
             "buttons": {
                 "showContractInfo": "コントラクトの情報を表示",
                 "hideContractInfo": "コントラクトの情報を隠す",

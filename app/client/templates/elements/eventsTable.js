@@ -196,7 +196,7 @@ Template['elements_events_row'].events({
     'click tr:not(.pending)': function(e) {
         var $element = $(e.target);
         if(!$element.is('button') && !$element.is('a')) {
-            ExpElements.Modal.show({
+            EthElements.Modal.show({
                 template: 'views_modals_eventInfo',
                 data: {
                     _id: this._id

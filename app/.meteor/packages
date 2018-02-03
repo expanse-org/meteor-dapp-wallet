@@ -39,11 +39,13 @@ mrt:qrcodesvg
 sacha:spin
 frozeman:global-notifications
 agnito:simptip
-expanse:elements
+ethereum:elements
 ethereum:blocks
 ethereum:accounts
 ethereum:dapp-styles
-numeral:numeral
-expanse:web3
 jrudio:bluebird
 tap:i18n-bundler
+numeral:numeral
+numeral:languages
+hashanp:geopattern
+exp:tools@0.7.6

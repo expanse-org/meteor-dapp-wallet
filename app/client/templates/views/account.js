@@ -174,7 +174,16 @@ Template['views_account'].helpers({
     */
     'customContract': function(){
         return CustomContracts.findOne({address: this.address.toLowerCase()});
-    }
+    },
+    /**
+     Displays ENS names with triangles
+ 
+     @method (nameDisplay)
+     */
+    'displayName': function(){
+         return this.ens ? this.name.split('.').slice(0, -1).reverse().join(' ▸ ') : this.name;
+    }           
+
 });
 
 var accountClipboardEventHandler = function(e){
@@ -238,7 +247,7 @@ Template['views_account'].events({
     'click button.delete': function(e, template){
         var data = this;
 
-        ExpElements.Modal.question({
+        EthElements.Modal.question({
             text: new Spacebars.SafeString(TAPi18n.__('wallet.accounts.modal.deleteText') + 
                 '<br><input type="text" class="deletionConfirmation" autofocus="true">'),
             ok: function(){
@@ -297,10 +306,6 @@ Template['views_account'].events({
                 name: text
             }});
 
-            Tracker.afterFlush(function(argument) {
-                $el.text(text);
-            });
-
             // make it non-editable
             $el.attr('contenteditable', null);
         }
@@ -345,7 +350,7 @@ Template['views_account'].events({
         e.preventDefault();
         
         // Open a modal showing the QR Code
-        ExpElements.Modal.show({
+        EthElements.Modal.show({
             template: 'views_modals_qrCode',
             data: {
                 address: this.address
@@ -369,7 +374,7 @@ Template['views_account'].events({
         })
 
         // Open a modal showing the QR Code
-        ExpElements.Modal.show({
+        EthElements.Modal.show({
             template: 'views_modals_interface',
             data: {
                 jsonInterface: cleanJsonInterface

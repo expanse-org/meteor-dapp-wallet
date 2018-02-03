@@ -36,13 +36,12 @@ Check if in mist and in mist mode
 
 @method (isMistMode)
 **/
-Template.registerHelper('isMistMode', function(){
-    return (typeof mist !== 'undefined' && mist.mode === 'mist') ||    // old mist api <= 0.8.7
-           (typeof mistMode !== 'undefined' && mistMode === 'mist');   // new mist api >= 0.8.8
+Template.registerHelper('isWalletMode', function(){
+    return window.mistMode === 'wallet' || typeof mist === 'undefined'; // also show network info in normal browsers
 });
 
 /**
-Check if currenct unit is an expanse unit
+Check if currenct unit is an ether unit
 
 @method (isEtherUnit)
 **/
@@ -192,7 +191,7 @@ Template.registerHelper('formatTime', Helpers.formatTime);
 /**
 Formats a given transactions balance
 
-    {{formatTransactionBalance value exchangeRates "expanse"}}
+    {{formatTransactionBalance value exchangeRates "ether"}}
 
 @method formatTransactionBalance
 @param {String} value  the value to format

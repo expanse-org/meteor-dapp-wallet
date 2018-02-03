@@ -1,0 +1,21 @@
+<template name="mist_alert">
+  <div class="alert-banner {{alertViewState}}">
+    <section>
+      <h1>Welcome</h1>
+      <button type="button" class="hide-alert close-button">&times;</button>
+      <p>
+        Come chat with us.
+      </p>
+      <p>
+        <a class="hide-alert button" href="javascript:void(0)">Close this message</a>
+        <a class="hide-alert button download-button" href="https://www.discord.me">Discord Channel</a>
+      </p>
+    </section>
+  </div>
+
+  <div class="show-alert alert-bubble {{bubbleViewState}}">
+    <button>
+      <span class="icon-bell"></span>
+    </button>
+  </div>
+</template>

@@ -23,8 +23,8 @@
             "texts": {
                 "note": "메모",
                 "balance": "잔고",
-                "connectionErrorMist": "연결할 수 없습니다. geth를 다음과 같이 실행하세요:<br><br><small><code>__node__</code><br><br>IPC 경로가 디폴트로 되어있는지 확인하세요. 만일 다른 경로를 사용한다면 다음과 같이 실행하세요: <code>datadir</code>, e.g.<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Ethereum/geth.ipc</code><br>or<br><code>geth --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.ethereum/geth.ipc</code>. <br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
-                "connectionErrorBrowser": "연결할 수 없습니다. geth를 다음의 옵션으로 실행하세요.:<br><br><small><code>__node__</code><br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorMist": "연결할 수 없습니다. gexp를 다음과 같이 실행하세요:<br><br><small><code>__node__</code><br><br>IPC 경로가 디폴트로 되어있는지 확인하세요. 만일 다른 경로를 사용한다면 다음과 같이 실행하세요: <code>datadir</code>, e.g.<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/Library/Expanse/gexp.ipc</code><br>or<br><code>gexp --datadir ... --ipcpath /Users/&lt;yourUser&gt;/.expanse/gexp.ipc</code>. <br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
+                "connectionErrorBrowser": "연결할 수 없습니다. gexp를 다음의 옵션으로 실행하세요.:<br><br><small><code>__node__</code><br><br>Optional add: <code>--unlock &lt;yourAccount&gt;.</code></small>",
                 "pendingConfirmationsBadge": "승인 대기 중!",
                 "nodeSyncing": "__blockDiff__ 블럭 남음",
                 "blockReceived": "새 블럭을 받았음",
@@ -92,6 +92,7 @@
             "buttons": {
                 "deposit": "이더 입금",
                 "depositBitcoin": "비트코인을 사용한 입금",
+                "viewOnExplorer": "View on Gander",
                 "copyAddress": "주소 복사",
                 "scanQRCode": "QR 코드 보기",
                 "showInterface": "인터페이스 보기"
@@ -279,7 +280,7 @@
             "title": "주문형 <strong>토큰</strong>",
             "subTitle": "추가된 토큰",
             "admin": "__name__ (관리자 페이지)",
-            "description": "토큰은 이더리움 플랫폼 위에 만들어진 화폐와 다른 대체수단들을 말합니다. 토큰들을 열람하고 송금하기 위해서는, 토큰들의 주소를 이 목록에 등록해야 합니다. <a href=\"http://chriseth.github.io/browser-solidity/?gist=0d1a998d949e26942212\" target=\"_blank\">주문형 토큰 예제</a>를 수정해 주문형 토큰을 만들거나, <a href=\"https://www.ethereum.org/token#the-code\" target=\"_blank\">이더리움 토큰들</a>를 통해 더 학습을 할 수도 있습니다.",
+            "description": "토큰은 이더리움 플랫폼 위에 만들어진 화폐와 다른 대체수단들을 말합니다. 토큰들을 열람하고 송금하기 위해서는, 토큰들의 주소를 이 목록에 등록해야 합니다. <a href=\"https://github.com/ethereum/EIPs/issues/644\" target=\"_blank\">주문형 토큰 예제</a>를 수정해 주문형 토큰을 만들거나, <a href=\"https://www.tokenlab.io\" target=\"_blank\">이더리움 토큰들</a>를 통해 더 학습을 할 수도 있습니다.",
             "deleteToken": "목록에서 <strong>__token__</strong> 토큰을 삭제하고 싶습니까?",
             "addedToken": "리스트에 __token__ 토큰 추가됨",
             "editedToken": "__token__ 토큰 수정됨",
@@ -307,7 +308,7 @@
             "writeToContract": "컨트랙트에 쓰기",
             "pickContract": "컨트랙트 선택",
             "pickFunction": "함수 선택",
-            "noContract": "<p>여기에 원하는 컨트랙트의 소스를 입력하세요. <a href=\"http://ethereum.org\" target=\"_blank\">ethereum.org</a>에 여러가지 컨트랙트 예제가 있습니다.: </p> <ul><li><a href=\"http://ethereum.org/token#the-code\" target=\"_blank\">토큰 만들기</a></li><li><a href=\"http://ethereum.org/crowdsale#the-code\" target=\"_blank\">크라우드세일 시작하기</a></li><li><a href=\"http://ethereum.org/dao#the-code\" target=\"_blank\">블럭체인 조직 만들기</a></li></ul>",
+            "noContract": "<p>여기에 원하는 컨트랙트의 소스를 입력하세요. <a href=\"http://expanse.org\" target=\"_blank\">expanse.org</a>에 여러가지 컨트랙트 예제가 있습니다.: </p> <ul><li><a href=\"http://expanse.org/token#the-code\" target=\"_blank\">토큰 만들기</a></li><li><a href=\"http://expanse.org/crowdsale#the-code\" target=\"_blank\">크라우드세일 시작하기</a></li><li><a href=\"http://expanse.org/dao#the-code\" target=\"_blank\">블럭체인 조직 만들기</a></li></ul>",
             "buttons": {
                 "showContractInfo": "컨트랙트 정보 보기",
                 "hideContractInfo": "컨트랙트 정보 감추기",

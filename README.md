@@ -1,7 +1,8 @@
-# Expanse Wallet Ðapp
+# Ethereum Wallet Ðapp
 
-The Expanse wallet. 
-This project is based on [Ethereum Wallet Ðapp](https://github.com/ethereum/meteor-dapp-wallet) and has been extended by the expanse project.
+The Ethereum wallet.
+
+[![Build Status](https://travis-ci.org/ethereum/meteor-dapp-wallet.svg?branch=master)](https://travis-ci.org/ethereum/meteor-dapp-wallet)
 
 **NOTE** The wallet is not yet official released,
 can contain severe bugs!
@@ -9,11 +10,11 @@ can contain severe bugs!
 
 ## Development
 
-Start an `gexp` node and and the app using meteor and open http://localhost:3000 in your browser:
+Start an `geth` node and the app using meteor and open http://localhost:3000 in your browser:
 
-    $ gexp --rpccorsdomain "http://localhost:3000" --rpc --unlock <your account>
+    $ geth --rpccorsdomain "http://localhost:3000" --rpc --unlock <your account>
 
-Starting the wallet dapp using [Meteor](http://meteor.com/install)
+Starting the wallet dapp using [Meteor](https://meteor.com/install)
 
     $ cd meteor-dapp-wallet/app
     $ meteor

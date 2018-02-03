@@ -25,11 +25,13 @@ Template['layout_header'].helpers({
     */
     'goToSend': function() {
         FlowRouter.watchPathChange();
-        var address = web3.toChecksumAddress(FlowRouter.getParam('address'));
+        var address = web3.toChecksumAddress(FlowRouter.getParam('address'));  
+        var accounts = EthAccounts.find({}).fetch();
 
+        // For some reason the path /send/ doesn't show tokens anymore
         return (address)
             ? FlowRouter.path('sendFrom', {from: address})
-            : FlowRouter.path('send');
+            : FlowRouter.path('sendFrom', {from: accounts[0] ? accounts[0].address : null });
     },
     /**
     Calculates the total balance of all accounts + wallets.
@@ -62,9 +64,9 @@ Template['layout_header'].helpers({
     @method (timeSinceBlock)
     */
     'timeSinceBlock': function () {
-
-        if (EthBlocks.latest.timestamp == 0
-            || typeof EthBlocks.latest.timestamp == 'undefined')
+        
+        if (EthBlocks.latest.timestamp == 0 
+            || typeof EthBlocks.latest.timestamp == 'undefined')   
             return false;
 
         var timeSince = moment(EthBlocks.latest.timestamp, "X");
@@ -91,9 +93,9 @@ Template['layout_header'].helpers({
     @method (timeSinceBlockText)
     */
     'timeSinceBlockText': function () {
-
-        if (EthBlocks.latest.timestamp == 0
-            || typeof EthBlocks.latest.timestamp == 'undefined')
+        
+        if (EthBlocks.latest.timestamp == 0 
+            || typeof EthBlocks.latest.timestamp == 'undefined')   
             return TAPi18n.__('wallet.app.texts.waitingForBlocks');
 
         var timeSince = moment(EthBlocks.latest.timestamp, "X");

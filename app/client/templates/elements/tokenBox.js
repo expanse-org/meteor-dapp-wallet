@@ -13,8 +13,8 @@ Template['elements_tokenBox'].helpers({
     */
     'formattedTotalBalance': function(e){
         // Get wallets and accounts, but not contracts
-        var walletsAndAccounts = _.map(Wallets.find().fetch().concat(EthAccounts.find().fetch()), function(account){
-                if(!account.disabled) return account._id;
+        var walletsAndAccounts = _.map(Wallets.find().fetch().concat(EthAccounts.find().fetch()), function(account){  
+                if(!account.disabled) return account._id; 
             });
         // check the total balance of these accounts only
         var totalBalance = new BigNumber(0);
@@ -41,7 +41,7 @@ Template['elements_tokenBox'].helpers({
 Template['elements_tokenBox'].events({
     /**
     Click Delete Token
-
+    
     @event click a.create.account
     */
     'click .delete-token': function(e){
@@ -49,8 +49,8 @@ Template['elements_tokenBox'].events({
         e.preventDefault();
         e.stopImmediatePropagation();
 
-        ExpElements.Modal.question({
-            text: new Spacebars.SafeString(TAPi18n.__('wallet.tokens.deleteToken', {token: token.name})),
+        EthElements.Modal.question({
+            text: new Spacebars.SafeString(TAPi18n.__('wallet.tokens.deleteToken', {token: token.name})), // could be vulnerable as token name is not HTML purified
             ok: function(){
                 Tokens.remove(token._id);
             },

@@ -14,7 +14,7 @@ The send transaction info template
 // Set basic variables
 Template['views_modals_sendTransactionInfo'].helpers({
     /**
-    Calculates the fee used for this transaction in exp
+    Calculates the fee used for this transaction in ether
 
     @method (estimatedFee)
     */

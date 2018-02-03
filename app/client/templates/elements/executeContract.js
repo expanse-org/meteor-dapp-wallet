@@ -143,7 +143,6 @@ Template['elements_executeContract_constant'].onCreated(function(){
         // get args for the constant function and add callback
         var args = TemplateVar.get('inputs').concat(function(e, r) {
             if(!e) {
-                console.log('r', r);
                 var outputs = [];
                 // single return value
                 if(template.data.outputs.length === 1) {
@@ -162,7 +161,6 @@ Template['elements_executeContract_constant'].onCreated(function(){
             } 
         });
 
-        console.log('contractInstance[\''+template.data.name+'\'].apply(null, ' + JSON.stringify(args) + ')');
         template.data.contractInstance[template.data.name].apply(null, args);
 
     });
@@ -204,12 +202,8 @@ Template['elements_executeContract_constant'].events({
 
     @event change .abi-input, input .abi-input
     */
-    'change .abi-input, input .abi-input': function(e, template) {
+    'change .abi-input, input .abi-input, blur .abi-input': function(e, template) {
         var inputs = Helpers.addInputValue(template.data.inputs, this, e.currentTarget);
-        _.each(inputs, function(e,i){
-            console.log('input:', e,i, typeof i);
-        })
-        console.log('inputs', inputs);
         TemplateVar.set('inputs', inputs);
     }
 });
@@ -247,6 +241,9 @@ Template['elements_executeContract_function'].helpers({
     'reactiveDataContext': function(){
         if(this.inputs.length === 0)
             TemplateVar.set('executeData', this.contractInstance[this.name].getData());
+    }, 
+    'payable': function(){
+        return this && this.payable;
     }
 });
 
@@ -265,7 +262,7 @@ Template['elements_executeContract_function'].events({
 
     @event change .abi-input, input .abi-input
     */
-    'change .abi-input, input .abi-input': function(e, template) {
+    'change .abi-input, input .abi-input, blur .abi-input': function(e, template) {
         var inputs = Helpers.addInputValue(template.data.inputs, this, e.currentTarget);
     
         TemplateVar.set('executeData', template.data.contractInstance[template.data.name].getData.apply(null, inputs));
@@ -333,7 +330,7 @@ Template['elements_executeContract_function'].events({
                             FlowRouter.go('dashboard');
 
                         } else {
-                            // ExpElements.Modal.hide();
+                            // EthElements.Modal.hide();
 
                             GlobalNotification.error({
                                 content: error.message,
@@ -369,7 +366,7 @@ Template['elements_executeContract_function'].events({
                             });
                         } else {
 
-                            // ExpElements.Modal.hide();
+                            // EthElements.Modal.hide();
 
                             GlobalNotification.error({
                                 content: error.message,

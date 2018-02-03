@@ -25,12 +25,14 @@ Template['elements_balance'].helpers({
     */
     'convertedBalance': function(){
         var balance = TemplateVar.get('balance');
-        
+
         if (ExpTools.getUnit() === 'noether') return 'infinite';
 
         if(balance){
-            if(ExpTools.getUnit() === 'usd' || ExpTools.getUnit() === 'eur')
+            if(ExpTools.getUnit() === 'usd' || ExpTools.getUnit() === 'eur' || ExpTools.getUnit() === 'gbp' || ExpTools.getUnit() === 'brl')
                 return ExpTools.formatBalance(TemplateVar.get('balance'), '0,0.00');
+            else if(ExpTools.getUnit() === 'ether')
+                return ExpTools.formatBalance(TemplateVar.get('balance'), (this.showAllDecimals? '0,0.00[0000000000000000]' : '0,0.00') );
             else if(ExpTools.getUnit() === 'expanse')
                 return ExpTools.formatBalance(TemplateVar.get('balance'), (this.showAllDecimals? '0,0.00[0000000000000000]' : '0,0.00') );
             else if(ExpTools.getUnit() === 'finney')

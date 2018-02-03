@@ -17,7 +17,7 @@ var setupContractFilters = function(newDocument){
 
     var blockToCheckBack = (newDocument.checkpointBlock || 0) - ethereumConfig.rollBackBy;
 
-    // TODO change to 0, when new gexp is out!!!!!
+    // TODO change to 0, when new geth is out!!!!!
     if(blockToCheckBack < 400000)
         blockToCheckBack = 400000;
 
@@ -83,7 +83,7 @@ var setupContractFilters = function(newDocument){
                     }, function() {
 
                         // on click show tx info
-                        ExpElements.Modal.show({
+                        EthElements.Modal.show({
                             template: 'views_modals_transactionInfo',
                             data: {
                                 _id: txId
